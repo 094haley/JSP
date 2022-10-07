@@ -23,7 +23,7 @@
 	<body>
 		<h3>지시자(Directives)</h3>
 	
-		<h4>page 지시자</h3>
+		<h4>page 지시자</h4>
 		<p>
 			page info : <%= getServletInfo() %>
 		</p>
