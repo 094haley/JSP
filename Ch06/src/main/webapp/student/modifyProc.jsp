@@ -17,15 +17,14 @@
 	try{
 		
 		Connection conn = DB.getInstance().getConnection();
-		String sql = "UPDATE SET `stdName`=?, `stdHp`=?, `stdYear`=?,`stdAddress`=?";
+		String sql = "UPDATE `student` SET `stdName`=?, `stdYear`=?,`stdAddress`=?";
 			   sql += "WHERE `stdNo`=?";
 		PreparedStatement psmt = conn.prepareStatement(sql);
 		
 		psmt.setString(1, stdName);
-		psmt.setString(2, stdHp);
-		psmt.setString(3, stdYear);
-		psmt.setString(4, stdAddress);
-		psmt.setString(5, stdNo);
+		psmt.setString(2, stdYear);
+		psmt.setString(3, stdAddress);
+		psmt.setString(4, stdNo);
 		
 		psmt.executeUpdate();
 		

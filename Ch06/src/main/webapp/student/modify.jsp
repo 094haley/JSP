@@ -15,6 +15,7 @@
 	
 	try{
 		
+
 		Connection conn = DB.getInstance().getConnection();
 		Statement stmt = conn.createStatement();	
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `student` WHERE `stdNo`='" + stdNo + "'");
@@ -50,19 +51,19 @@
 		<a href="../1_JDBCTest.jsp">처음으로</a>
 		<a href="./list.jsp">student 목록</a>
 		
-		<form action="./registerProc.jsp" method="post">
+		<form action="./modifyProc.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>학번</td>
-					<td><input type="text" name="stdNo" value="<%= sb.getStdNo() %>"/></td>
+					<td><input type="text" name="stdNo" readonly value="<%= sb.getStdNo() %>"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="stdName" vlaue="<%= sb.getStdName() %>"/></td>
+					<td><input type="text" name="stdName" value="<%= sb.getStdName() %>"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type="text" name="stdHp" value="<%= sb.getStdHp() %>"/></td>
+					<td><input type="text" name="stdHp" readonly value="<%= sb.getStdHp() %>"/></td>
 				</tr>
 				<tr>
 					<td>학년</td>
