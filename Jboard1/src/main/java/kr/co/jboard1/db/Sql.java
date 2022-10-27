@@ -38,4 +38,12 @@ public class Sql {
 	
 	public static final String SELECT_MAX_NO = "select max(`no`) from `board_article`";
 
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `board_article`";
+	public static final String SELECT_ARTICLES = "select a.*, b.nick from `board_article` as a "
+											    + "join `board_user` as b "
+											    + "on a.uid = b.uid "
+												+ "order by a.no desc "
+											    + "LIMIT ?, 10";	
+
+			
 }
