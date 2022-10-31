@@ -74,12 +74,19 @@ public class ArticleBean {
 	public void setNo(int no) {
 		this.no = no;
 	}
+	
 	public int getParent() {
 		return parent;
 	}
+	
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
+	
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
+	}
+	
 	public int getComment() {
 		return comment;
 	}
