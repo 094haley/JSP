@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String no = request.getParameter("no");
 	
-	int result = ArticleDAO.getInstance().deleteCommnet(no);
+	int result = ArticleDAO.getInstance().deleteComment(no);
 	
 	JsonObject json = new JsonObject();
 	json.addProperty("result", result);

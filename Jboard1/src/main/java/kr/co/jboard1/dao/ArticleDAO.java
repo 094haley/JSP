@@ -304,7 +304,27 @@ public class ArticleDAO {
 		return comments;
 	}
 	
-	public void updateArticle() {}
+	public void updateArticle(String no, String title, String content) {
+		
+		try {
+			
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE); 
+			
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void updateArticleHit(String no) {
 		
@@ -360,9 +380,64 @@ public class ArticleDAO {
 		return result;
 	}
 
-	public void deleteArticle() {}
+	public void deleteArticle(String no) {
+		
+		try {
+			
+			Connection conn = DBCP.getConnection();
+
+			
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			
+			psmt.executeUpdate();
+			
+			psmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
-	public int deleteCommnet(String no) {
+	public String deleteFile(String no) {
+		
+		String newName= null;
+		
+		try {
+			
+			Connection conn = DBCP.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.SELECT_FILE);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.DELETE_FILE);
+			
+			psmt1.setString(1, no);
+			psmt2.setString(1, no);
+			
+			ResultSet rs = psmt1.executeQuery();
+			psmt2.executeUpdate();
+			
+			conn.commit();
+			
+			if(rs.next()) {
+				newName = rs.getString(3);
+			}
+			
+			psmt2.close();
+			psmt1.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return newName;
+		
+	}
+	
+	public int deleteComment(String no) {
 		int result = 0;
 		try {
 			
@@ -380,5 +455,6 @@ public class ArticleDAO {
 		
 		return result;
 	}
+	
 	
 }
