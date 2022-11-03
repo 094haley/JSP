@@ -44,7 +44,6 @@ public class Sql {
 												+ "`rdate`=NOW()";
 	
 	
-	
 	public static final String SELECT_MAX_NO = "select max(`no`) from `board_article`";
 
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `board_article` WHERE `parent` = 0";
@@ -80,6 +79,9 @@ public class Sql {
 	
 	public static final String UPDATE_FILE_DOWNLOAD = "UPDATE `board_file` SET `download` = `download` + 1 WHERE `fno`=?";
 	
+	public static final String UPDATE_ARTICLE_COMMENT_PLUS = "update `board_article` set `comment` = `comment` + 1 where `no`=?";
+	
+	public static final String UPDATE_ARTICLE_COMMENT_MINUS = "update `board_article` set `comment` = `comment` - 1 where `no`=?";
 	
 	public static final String UPDATE_COMMENT = "update `board_article` set "
 												+ "`content`=?,"

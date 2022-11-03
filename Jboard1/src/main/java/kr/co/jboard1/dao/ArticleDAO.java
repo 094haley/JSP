@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.jboard1.bean.ArticleBean;
 import kr.co.jboard1.bean.FileBean;
 import kr.co.jboard1.db.DBCP;
@@ -14,6 +17,8 @@ import kr.co.jboard1.db.Sql;
 
 // DAO(Data Access Object) : 데이터베이스처리 클래스
 public class ArticleDAO {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	// 싱글톤
 	private static ArticleDAO instance = new ArticleDAO();
@@ -28,7 +33,7 @@ public class ArticleDAO {
 		int parent = 0;
 		
 		try{
-			
+			logger.info("insertArticle");
 			Connection conn = DBCP.getConnection();
 			// 트랜젝션 시작
 			conn.setAutoCommit(false);
@@ -59,13 +64,14 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return parent;
 	}
 	
 	public void insertFile(int parent, String newName, String fname) {
 		try{
-			
+			logger.info("insertFile");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_FILE);
 			psmt.setInt(1, parent);
@@ -79,6 +85,7 @@ public class ArticleDAO {
 						
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -87,19 +94,22 @@ public class ArticleDAO {
 		ArticleBean article = null;
 		int result = 0;
 		try{
-			
+			logger.info("insertComment");
 			Connection conn = DBCP.getConnection();
 			
 			conn.setAutoCommit(false);
-			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.INSERT_COMMENT);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_PLUS);
 			Statement stmt = conn.createStatement();
-			psmt.setInt(1, comment.getParent());
-			psmt.setString(2, comment.getContent());
-			psmt.setString(3, comment.getUid());
-			psmt.setString(4, comment.getRegip());
+			psmt1.setInt(1, comment.getParent());
+			psmt1.setString(2, comment.getContent());
+			psmt1.setString(3, comment.getUid());
+			psmt1.setString(4, comment.getRegip());
 			
+			psmt2.setInt(1, comment.getParent());
 			
-			result = psmt.executeUpdate();			
+			result = psmt1.executeUpdate();	
+			psmt2.executeUpdate();
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_COMMENT_LATEST);
 			
 			conn.commit();
@@ -107,6 +117,7 @@ public class ArticleDAO {
 			if(rs.next()) {
 				article = new ArticleBean();
 				article.setNo(rs.getInt(1));
+				article.setParent(rs.getInt(2));
 				article.setContent(rs.getString(6));
 				article.setRdate(rs.getString(11).substring(2, 10));
 				article.setNick(rs.getString(12));
@@ -114,12 +125,13 @@ public class ArticleDAO {
 			
 			rs.close();
 			stmt.close();
-			psmt.close();
+			psmt1.close();
+			psmt2.close();
 			conn.close();
-			
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return article;
@@ -130,7 +142,7 @@ public class ArticleDAO {
 		int total = 0;
 		
 		try {
-			
+			logger.info("selectCountTotal");
 			Connection conn = DBCP.getConnection();
 			Statement stmt = conn.createStatement();
 			
@@ -145,6 +157,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return total;
 	}
@@ -154,7 +167,7 @@ public class ArticleDAO {
 		ArticleBean article = null;
 		
 		try{
-			
+			logger.info("selectArticle");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
 			psmt.setString(1, no);
@@ -187,6 +200,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return article;
 	}
@@ -196,7 +210,7 @@ public class ArticleDAO {
 		List<ArticleBean> articles = new ArrayList<>();
 		
 		try{
-			
+			logger.info("selectArticles");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
 			psmt.setInt(1, limitStart);
@@ -228,6 +242,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return articles;
@@ -237,7 +252,7 @@ public class ArticleDAO {
 		
 		FileBean fb = null;
 		try{
-			
+			logger.info("selectFile");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_FILE);
 			psmt.setString(1, parent);
@@ -259,6 +274,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return fb;
 	}
@@ -268,6 +284,7 @@ public class ArticleDAO {
 		List<ArticleBean> comments = new ArrayList<>();
 		
 		try {
+			logger.info("selectComments");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
 			psmt.setString(1, parent);
@@ -299,6 +316,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return comments;
@@ -307,7 +325,7 @@ public class ArticleDAO {
 	public void updateArticle(String no, String title, String content) {
 		
 		try {
-			
+			logger.info("updateArticle");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE); 
 			
@@ -322,6 +340,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 	}
@@ -329,6 +348,7 @@ public class ArticleDAO {
 	public void updateArticleHit(String no) {
 		
 		try {
+			logger.info("updateArticleHit");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);	
 			
@@ -340,12 +360,14 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
 	public void updateFileDownload(int fno) {
 		
 		try {
+			logger.info("updateFileDownload");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);	
 			
@@ -357,6 +379,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 	}
@@ -364,6 +387,7 @@ public class ArticleDAO {
 	public int updateComment(String no, String content) {
 		int result = 0;
 		try {
+			logger.info("updateComment");
 			Connection conn = DBCP.getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
 			psmt.setString(1, content);
@@ -375,6 +399,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return result;
@@ -383,7 +408,7 @@ public class ArticleDAO {
 	public void deleteArticle(String no) {
 		
 		try {
-			
+			logger.info("deleteArticle");
 			Connection conn = DBCP.getConnection();
 
 			
@@ -398,6 +423,7 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 	}
@@ -407,7 +433,7 @@ public class ArticleDAO {
 		String newName= null;
 		
 		try {
-			
+			logger.info("deleteFile");
 			Connection conn = DBCP.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement psmt1 = conn.prepareStatement(Sql.SELECT_FILE);
@@ -431,30 +457,39 @@ public class ArticleDAO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return newName;
 		
 	}
 	
-	public int deleteComment(String no) {
+	public int deleteComment(String no, String parent) {
 		int result = 0;
 		try {
-			
+			logger.info("deleteComment");
 			Connection conn = DBCP.getConnection();
-			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
-			psmt.setString(1, no);
 			
-			result = psmt.executeUpdate();
-			psmt.close();
+			conn.setAutoCommit(false);
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.DELETE_COMMENT);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_MINUS);
+			psmt1.setString(1, no);
+			psmt2.setString(1, parent);
+			
+			result = psmt1.executeUpdate();
+			psmt2.executeUpdate();
+			
+			conn.commit();
+			
+			psmt1.close();
+			psmt2.close();
 			conn.close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		return result;
 	}
-	
-	
 }
