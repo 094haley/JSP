@@ -1,3 +1,5 @@
+<%@page import="kr.co.jboard1.bean.TermsBean"%>
+<%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="kr.co.jboard1.db.Sql"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -25,56 +27,35 @@
 
 <%
 	
-	String terms = null;
-	String privacy = null;
-
-	try{
-	
-		Connection conn = DBCP.getConnection();
-		Statement stmt = conn.createStatement();
-		
-		ResultSet rs = stmt.executeQuery(Sql.SELECT_TERMS);
-		
-		if(rs.next()){
-			terms = rs.getString(1);
-			privacy = rs.getString(2);
-		}
-		
-		rs.close();
-		stmt.close();
-		conn.close();
-		
-	}catch(Exception e){
-		e.printStackTrace();
-	}
+	TermsBean tb = UserDAO.getInstance().selectTerms();
 
 %>
-        <main id="user">
-            <section class="terms">
-                <table border="1">
-                    <caption>사이트 이용약관</caption>
-                    <tr>
-                        <td>
-                            <textarea name="terms"><%= terms %></textarea>
-                            <label><input type="checkbox" class="terms">&nbsp;동의합니다</label>
-                        </td>
-                    </tr>
+<main id="user">
+    <section class="terms">
+        <table border="1">
+            <caption>사이트 이용약관</caption>
+            <tr>
+                <td>
+                    <textarea name="terms"><%= tb.getTerms() %></textarea>
+                    <label><input type="checkbox" class="terms">&nbsp;동의합니다</label>
+                </td>
+            </tr>
 
-                    <table border="1">
-                        <caption>개인정보 취급방침</caption>
-                        <tr>
-                            <td>
-                                <textarea name="privacy"><%= privacy %></textarea>
-                                <label><input type="checkbox" class="privacy">&nbsp;동의합니다</label>
-                            </td>
-                        </tr>
-                </table>
+            <table border="1">
+                <caption>개인정보 취급방침</caption>
+                <tr>
+                    <td>
+                        <textarea name="privacy"><%= tb.getPrivacy() %></textarea>
+                        <label><input type="checkbox" class="privacy">&nbsp;동의합니다</label>
+                    </td>
+                </tr>
+        </table>
 
-                <p>
-                    <a href="/Jboard1/user/login.jsp" class="btn btnCancel">취소</a>
-                    <a href="/Jboard1/user/register.jsp" class="btn btnNext">다음</a>
-                </p>
- 
-            </section>
-        </main>
+        <p>
+            <a href="/Jboard1/user/login.jsp" class="btn btnCancel">취소</a>
+            <a href="/Jboard1/user/register.jsp" class="btn btnNext">다음</a>
+        </p>
+
+    </section>
+</main>
 <%@ include file="./_footer.jsp" %>
