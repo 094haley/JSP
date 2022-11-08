@@ -73,7 +73,7 @@
 						"stdAddress":stdAddress
 				};
 				
-				$.post('./registerStudentProc.jsp', jsonData, function(data){
+				$.post('./proc/registerStudentProc.jsp', jsonData, function(data){
 					
 					console.log(data);
 					
@@ -82,6 +82,17 @@
 					}else{
 						alert('학생등록을 실패하였습니다.');
 					}
+					
+					let tags = "<tr>";
+					tags+= "<td>"+stdNo+"</td>";
+					tags+= "<td>"+stdName+"</td>";
+					tags+= "<td>"+stdHp+"</td>";
+					tags+= "<td>"+stdYear+"</td>";
+					tags+= "<td>"+stdAddress+"</td>";
+					tags+= "</tr>";
+				
+				$('.student').append(tags);		
+					
 					
 				});
 				
@@ -99,7 +110,7 @@
 		
 		<h4>학생목록</h4>
 		<button class="btnRegister">등록</button>
-		<table border="1">
+		<table border="1" class="student">
 			<tr>
 				<th>학번</th>
 				<th>이름</th>

@@ -52,7 +52,6 @@
 		<title>수강관리</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
-		
 		$(function(){
 			
 			// 검색기능
@@ -64,21 +63,21 @@
 						"search":search
 				}
 				
-				$.get('./searchProc.jsp', jsonData, function(data){
+				$.get('./proc/searchProc.jsp', jsonData, function(data){
 					
 					console.log(data);
 					
                     for(let reg of data){
 
-                        let tags = "<tr class='row'>"
-							tags += "<td>" + reg.regStdNo + "</td>"
-							tags += "<td>" + reg.stdName + "</td>"
-							tags += "<td>" + reg.LecName + "</td>"
-							tags += "<td>" + reg.regLecNo + "</td>"
-							tags += "<td>" + reg.regMidScore + "</td>"
-							tags += "<td>" + reg.regFinalScore + "</td>"
-							tags += "<td>" + reg.regTotalScore + "</td>"
-							tags += "<td>" + reg.regRegGrade + "</td>"
+                        let tags = "<tr class='row'>";
+							tags += "<td>" + reg.regStdNo + "</td>";
+							tags += "<td>" + reg.stdName + "</td>";
+							tags += "<td>" + reg.lecName + "</td>";
+							tags += "<td>" + reg.regLecNo + "</td>";
+							tags += "<td>" + reg.regMidScore + "</td>";
+							tags += "<td>" + reg.regFinalScore + "</td>";
+							tags += "<td>" + reg.regTotalScore + "</td>";
+							tags += "<td>" + reg.regGrade + "</td>";
 							tags += "</tr>";
 							
                         $('.list').append(tags);
@@ -97,7 +96,9 @@
 			$('input[type=submit]').click(function(){
 				
 				let regStdNo = $('input[name=regStdNo]').val();
+				let stdName = $('input[name=stdName]').val();
 				let regLecNo = $('select[name=regLecNo]').val();
+				let lecName = $('select[name=regLecNo]').data("name");
 
 				
 				let jsonData = {
@@ -107,7 +108,7 @@
 				
 				console.log(jsonData);
 				
-				$.post('./registerProc.jsp', jsonData, function(data){
+				$.post('./proc/registerProc.jsp', jsonData, function(data){
 					
 					console.log(data);
 					
@@ -117,6 +118,20 @@
 						alert('수강신청을 실패하였습니다.');
 					}
 					
+                    let tags = "<tr class='row'>";
+					tags += "<td>" + regStdNo + "</td>";
+					tags += "<td>" + stdName + "</td>";
+					tags += "<td>" + lecName + "</td>";
+					tags += "<td>" + regLecNo + "</td>";
+					tags += "<td></td>";
+					tags += "<td></td>";
+					tags += "<td></td>";
+					tags += "<td></td>";
+					tags += "</tr>";
+					
+                $('.list').append(tags);
+				
+                
 				});
 			});
 			
@@ -125,6 +140,22 @@
 				$('section').hide();
 			});
 			
+			
+			// 선택박스에 출력할 강좌 가져오기
+			$.ajax({
+				url:'./proc/getlecName.jsp',
+				method:'get',
+				dataType:'json'			
+				success:function(data){
+					
+					for(let name of data){
+					
+						let tags = "<option value="none">강좌선택</option>"
+					}
+					
+				}
+				
+			});
 		});
 		
 		</script>
@@ -182,13 +213,6 @@
 						<td>
 							<select name="regLecNo">
 								<option value="none">강좌선택</option>
-								<option value="159">인지행동심리학</option>
-								<option value="167">운영체제론</option>
-								<option value="234">중급 영문법</option>
-								<option value="239">세법개론</option>
-								<option value="248">빅데이터 개론</option>
-								<option value="253">컴퓨팅사고와 코딩</option>
-								<option value="349">사회복지 마케팅</option>
 							</select>
 						</td>
 					</tr>

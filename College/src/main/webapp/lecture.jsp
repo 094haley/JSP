@@ -49,8 +49,7 @@
 			$('.btnRegister').click(function(){
 				$('section').show();
 			});
-			
-			
+				
 			// 강좌등록
 			$('input[type=submit]').click(function(){
 				
@@ -68,7 +67,7 @@
 						"lecClass":lecClass
 				};
 				
-				$.post('./registerLectureProc.jsp', jsonData, function(data){
+				$.post('./proc/registerLectureProc.jsp', jsonData, function(data){
 					
 					console.log(data);
 					
@@ -77,6 +76,16 @@
 					}else{
 						alert('강좌등록을 실패하였습니다.');
 					}
+					
+					let tags = "<tr>";
+						tags+= "<td>"+lecNo+"</td>";
+						tags+= "<td>"+lecName+"</td>";
+						tags+= "<td>"+lecCredit+"</td>";
+						tags+= "<td>"+lecTime+"</td>";
+						tags+= "<td>"+lecClass+"</td>";
+						tags+= "</tr>";
+					
+					$('.lecture').append(tags);				
 					
 				});
 				
@@ -99,7 +108,7 @@
 		
 		<h4>강좌현황</h4>
 		<button class="btnRegister">등록</button>
-		<table border="1">
+		<table border="1" class="lecture">
 			<tr>
 				<th>번호</th>
 				<th>강좌명</th>
