@@ -72,7 +72,7 @@
 					
 					console.log(data);
 					
-					if(data.result > 0) {
+					if(data.result == 1) {
 						alert('강좌등록을 성공하였습니다.');
 					}else{
 						alert('강좌등록을 실패하였습니다.');

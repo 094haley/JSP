@@ -55,10 +55,39 @@
 		
 		$(function(){
 			
+			// 검색기능
 			$('.btnSearch').click(function(){
+				let search = $('input[name=search]').val();
+				$('.row').remove();
+				
+				let jsonData = {
+						"search":search
+				}
+				
+				$.get('./searchProc.jsp', jsonData, function(data){
+					
+					console.log(data);
+					
+                    for(let reg of data){
+
+                        let tags = "<tr class='row'>"
+							tags += "<td>" + reg.regStdNo + "</td>"
+							tags += "<td>" + reg.stdName + "</td>"
+							tags += "<td>" + reg.LecName + "</td>"
+							tags += "<td>" + reg.regLecNo + "</td>"
+							tags += "<td>" + reg.regMidScore + "</td>"
+							tags += "<td>" + reg.regFinalScore + "</td>"
+							tags += "<td>" + reg.regTotalScore + "</td>"
+							tags += "<td>" + reg.regRegGrade + "</td>"
+							tags += "</tr>";
+							
+                        $('.list').append(tags);
+                    }
+				});
 				
 			});
 
+			
 			// 수강신청 폼
 			$('.btnRegister').click(function(){
 				$('section').show();
@@ -82,14 +111,13 @@
 					
 					console.log(data);
 					
-					if(data.result > 0) {
+					if(data.result == 1) {
 						alert('수강신청을 성공하였습니다.');
 					}else{
 						alert('수강신청을 실패하였습니다.');
 					}
 					
 				});
-				
 			});
 			
 			// 닫기버튼
@@ -112,7 +140,7 @@
 		<button class="btnSearch">검색</button>
 		<button class="btnRegister">수강신청</button>
 		
-		<table border="1">
+		<table border="1" class="list">
 			<tr>
 				<th>학번</th>
 				<th>이름</th>
