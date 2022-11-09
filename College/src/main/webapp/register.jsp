@@ -18,6 +18,7 @@
 		   sql += "FROM `register` AS a ";
 		   sql += "JOIN `student` AS b ON a.`regStdNo` = b.`stdNo` ";
 		   sql += "JOIN `lecture` AS c ON a.`regLecNo` = c.`lecNo`";
+		   
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()){
@@ -65,8 +66,6 @@
 				
 				$.get('./proc/searchProc.jsp', jsonData, function(data){
 					
-					console.log(data);
-					
                     for(let reg of data){
 
                         let tags = "<tr class='row'>";
@@ -90,19 +89,37 @@
 			// 수강신청 폼
 			$('.btnRegister').click(function(){
 				$('section').show();
+				
 			});
 			
-			// 강좌등록
+			// 선택박스에 출력할 강좌 가져오기
+			$.ajax({
+				url:'./proc/getlecName.jsp',
+				method:'get',
+				dataType:'json',			
+				success: function(data){
+					
+					for(let lec of data){
+					
+						let tag = "<option value='"+lec.lecNo+"'>";
+							tag += lec.lecName+ "</option>";
+							
+							$('select').append(tag);
+					}
+				}
+				
+			});
+			
+			// 수강신청
 			$('input[type=submit]').click(function(){
 				
 				let regStdNo = $('input[name=regStdNo]').val();
 				let stdName = $('input[name=stdName]').val();
 				let regLecNo = $('select[name=regLecNo]').val();
-				let lecName = $('select[name=regLecNo]').data("name");
-
 				
 				let jsonData = {
 						"regStdNo":regStdNo,
+						"stdName":stdName,
 						"regLecNo":regLecNo
 				};
 				
@@ -110,7 +127,6 @@
 				
 				$.post('./proc/registerProc.jsp', jsonData, function(data){
 					
-					console.log(data);
 					
 					if(data.result == 1) {
 						alert('수강신청을 성공하였습니다.');
@@ -118,11 +134,13 @@
 						alert('수강신청을 실패하였습니다.');
 					}
 					
+					console.log(data);
+					
                     let tags = "<tr class='row'>";
-					tags += "<td>" + regStdNo + "</td>";
-					tags += "<td>" + stdName + "</td>";
-					tags += "<td>" + lecName + "</td>";
-					tags += "<td>" + regLecNo + "</td>";
+					tags += "<td>" + data.regStdNo + "</td>";
+					tags += "<td>" + data.stdName + "</td>";
+					tags += "<td>" + data.lecName + "</td>";
+					tags += "<td>" + data.regLecNo+ "</td>";
 					tags += "<td></td>";
 					tags += "<td></td>";
 					tags += "<td></td>";
@@ -140,22 +158,6 @@
 				$('section').hide();
 			});
 			
-			
-			// 선택박스에 출력할 강좌 가져오기
-			$.ajax({
-				url:'./proc/getlecName.jsp',
-				method:'get',
-				dataType:'json'			
-				success:function(data){
-					
-					for(let name of data){
-					
-						let tags = "<option value="none">강좌선택</option>"
-					}
-					
-				}
-				
-			});
 		});
 		
 		</script>
