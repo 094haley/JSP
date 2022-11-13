@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-	
-	List<StudentBean> students = null;
+List<StudentBean> students = null;
 
 	// 데이터베이스 작업	
 	try{
@@ -20,24 +19,22 @@
 		students = new ArrayList<>();
 		
 		while(rs.next()){
-			
-			StudentBean sb = new StudentBean();
-			sb.setStdNo(rs.getString(1));
-			sb.setStdName(rs.getString(2));
-			sb.setStdHp(rs.getString(3));
-			sb.setStdYear(rs.getInt(4));
-			sb.setStdAddress(rs.getString(5));
-			
-			students.add(sb);
-			
+	
+	StudentBean sb = new StudentBean();
+	sb.setStdNo(rs.getString(1));
+	sb.setStdName(rs.getString(2));
+	sb.setStdHp(rs.getString(3));
+	sb.setStdYear(rs.getInt(4));
+	sb.setStdAddress(rs.getString(5));
+	
+	students.add(sb);
+	
 		}
 		
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -59,7 +56,9 @@
 				<th>주소</th>
 				<th>관리</th>
 			</tr>
-			<% for(StudentBean sb : students){ %>
+			<%
+			for(StudentBean sb : students){
+			%>
 				<tr>
 					<td><%= sb.getStdNo() %></td>
 					<td><%= sb.getStdName() %></td>
