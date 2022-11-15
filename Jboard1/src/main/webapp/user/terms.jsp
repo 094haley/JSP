@@ -40,15 +40,15 @@
                     <label><input type="checkbox" class="terms">&nbsp;동의합니다</label>
                 </td>
             </tr>
-
-            <table border="1">
-                <caption>개인정보 취급방침</caption>
-                <tr>
-                    <td>
-                        <textarea name="privacy"><%= tb.getPrivacy() %></textarea>
-                        <label><input type="checkbox" class="privacy">&nbsp;동의합니다</label>
-                    </td>
-                </tr>
+		</table>
+        <table border="1">
+            <caption>개인정보 취급방침</caption>
+            <tr>
+                <td>
+                    <textarea name="privacy"><%= tb.getPrivacy() %></textarea>
+                    <label><input type="checkbox" class="privacy">&nbsp;동의합니다</label>
+                </td>
+            </tr>
         </table>
 
         <p>
