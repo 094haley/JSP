@@ -2,14 +2,14 @@
 <%@ include file="/_header.jsp" %>
 <main id="user">
     <section class="login">
-        <form action="/Jboard1/user/proc/loginProc.jsp" method="post">
+        <form action="./proc/loginProc.jsp" method="post">
             <table border="0">
                 <tr>
-                    <td><img src="/Jboard1/img/login_ico_id.png" alt="아이디"></td>
+                    <td><img src="./img/login_ico_id.png" alt="아이디"></td>
                     <td><input type="text" name="uid" placeholder="아이디 입력"></td>
                 </tr>
                 <tr>
-                    <td><img src="/Jboard1/img/login_ico_pw.png" alt="비밀번호"></td>
+                    <td><img src="./img/login_ico_pw.png" alt="비밀번호"></td>
                     <td><input type="password" name="pass" placeholder="비밀번호 입력"></td>
                 </tr>
             </table>
