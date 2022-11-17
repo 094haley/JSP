@@ -33,12 +33,14 @@
                         <textarea name="content"><%= article.getContent() %></textarea>
                     </td>
                 </tr>
+                <!-- 글 수정시 파일 첨부 기능 추후 구현하기
                 <tr>
                     <th>파일</th>
                     <td>
                         <input type="file" name="fname">
                     </td>
                 </tr>
+                  -->
             </table>
 
             <div>

@@ -88,9 +88,7 @@ public class Sql {
 												+ "`content`=?,"
 												+ "`rdate`=NOW() "
 												+ "where `no`=?";
-	
-	
-	
+
 	public static final String DELETE_ARTICLE = "delete from `board_article` where `no`=? or `parent`=?";
 	
 	public static final String DELETE_COMMENT = "delete from `board_article` where `no`=?";

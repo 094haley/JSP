@@ -71,10 +71,15 @@
             <% for(ArticleBean ab : articles) { %>
             <tr>
                 <td><%= pageStartNum-- %></td>
-                <td><a href="./view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= ab.getNo()%>&pg=<%= currentPage %>"><%= ab.getTitle() %>.[<%= ab.getComment() %>]</a></td>
+                <td><a href="./view.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= ab.getNo()%>&pg=<%= currentPage %>"><%= ab.getTitle() %>[<%= ab.getComment() %>]</a></td>
                 <td><%= ab.getNick() %></td>
                 <td><%= ab.getRdate().substring(2, 10) %></td>
                 <td><%= ab.getHit() %></td>
+            </tr>
+            <% } %>
+            <% if(total ==0 ) { %>
+            <tr>
+            	<td colspan="5" align="center">등록된 게시글이 없습니다.</td>
             </tr>
             <% } %>
         </table>
@@ -88,9 +93,9 @@
             <% } %> 
             <% if(pageGroupEnd < lastPageNum) { %>
             <a href="./list.jsp?group=<%= group %>&cate=<%= cate %>&pg=<%= pageGroupEnd + 1 %>" class="next">다음</a>
-            <% } %>    
+            <% } %>
         </div>
-        <a href="./write.jsp?group=<%= group %>&cate=<%= cate %>" class="btn btnWrite">글쓰기</a>
+			<a href="./write.jsp?group=<%= group %>&cate=<%= cate %>" class="btn btnWrite">글쓰기</a>
 
     </section>
 </main>

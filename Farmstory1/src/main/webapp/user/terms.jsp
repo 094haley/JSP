@@ -22,7 +22,7 @@
 </script>
 
 <%
-	TermsBean tb = UserDAO.INSTANCE.selectTerms();
+	TermsBean tb = UserDAO.getInstance().selectTerms();
 %>
 <main id="user">
     <section class="terms">
