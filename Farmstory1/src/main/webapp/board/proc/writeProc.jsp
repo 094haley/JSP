@@ -11,6 +11,13 @@
 	
 	// multipart 폼 데이터 수신
 	String savePath = application.getRealPath("/file");
+	
+	// File폴더 자동 생성
+	File targetDir = new File(savePath);
+	if(!targetDir.exists()){
+		targetDir.mkdir();
+	}
+	
 	int maxSize = 1024 * 1024 * 10;
 	MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
