@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String result = request.getParameter("result");
+	String success = request.getParameter("success");
 	UserBean sessUser = (UserBean)session.getAttribute("sessUser");
 %>
 <!DOCTYPE html>
@@ -9,17 +10,37 @@
 <head>
     <meta charset="UTF-8">
     <title>팜스토리::메인</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="/Farmstory1/css/style.css">
     <link rel="stylesheet" href="/Farmstory1/user/css/style.css">
     <link rel="stylesheet" href="/Farmstory1/board/css/style.css">
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
+		
+    	$(function(){
+
+	        $('#tabs').tabs();
+	        
+	    });
+	
 		let result = "<%= result %>";
 		if(result == '201') {
 			alert('수정완료!') 
 		}else if(result == '202') {
 			alert('삭제완료!');
 		}
+		
+        let success = "<%= success %>";
+        
+        if(success == '100'){
+        	alert('일치하는 회원이 없습니다.\n아이디, 비밀번호를 다시 한번 확인하십시요.');
+        }else if(success == '101'){
+        	alert('로그인을 먼저 하십시요.');
+        }
+		
 	</script>
 </head>
 <body>

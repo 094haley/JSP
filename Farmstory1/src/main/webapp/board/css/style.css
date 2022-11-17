@@ -36,6 +36,8 @@
 #board > .list > table tr > td:nth-child(5) {}
 
 #board > .list > .page {
+	/*heigt 추가함*/
+	height : 32px;
     text-align: center;
     margin-top: 10px;
 }
