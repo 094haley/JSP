@@ -25,6 +25,15 @@
 		// 탭
 	    $('#tabs').tabs();
 		
+		// 슬라이드
+		$('.slider > ul').bxSlider ({
+			slideWidth: 980,
+            pager: false,
+            controls: false,
+            auto: true
+		});
+
+	
 		// 공지사항 최신글 가져오기
 		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=notice', function(data){
 			for(let latest of data) {
@@ -49,7 +58,6 @@
 			}
 		});
 
-
 		
 		/* 탭 설정
 		$('#tabs-1').nextAll().hide();
@@ -71,7 +79,12 @@
 
 <main>
     <div class="slider">
-        <div><img src="./img/main_slide_img_tit.png" alt="사람과 자연을 사랑하는 팜스토리"></div>
+    	<ul>
+    		<li><img src="./img/main_slide_img1.jpg" alt="슬라이드이미지1"></li>
+    		<li><img src="./img/main_slide_img2.jpg" alt="슬라이드이미지2"></li>
+    		<li><img src="./img/main_slide_img3.jpg" alt="슬라이드이미지3"></li>
+    	</ul>
+        <img src="./img/main_slide_img_tit.png" alt="사람과 자연을 사랑하는 팜스토리">
         <div class="banner">
             <img src="./img/main_banner_txt.png" alt="GRANDOPEN">
             <img src="./img/main_banner_tit.png" alt="팜스토리오픈기념 30% 할인 이벤트">
@@ -164,14 +177,15 @@
 	                <li><a href="#tabs-2">1:1 고객문의</a></li>
 	                <li><a href="#tabs-3">자주묻는 질문</a></li>
 	            </ul>
-            <div id="tabs-1">
-                <ul class="txt txt-notice"></ul>
-            </div>
-            <div id="tabs-2">
-                <ul class="txt txt-qna"></ul>
-            </div>
-            <div id="tabs-3">
-                <ul class="txt txt-faq"></ul>
+	            <div id="tabs-1">
+	                <ul class="txt txt-notice"></ul>
+	            </div>
+	            <div id="tabs-2">
+	                <ul class="txt txt-qna"></ul>
+	            </div>
+	            <div id="tabs-3">
+	                <ul class="txt txt-faq"></ul>
+	            </div>
             </div>
         </div>
     </div>

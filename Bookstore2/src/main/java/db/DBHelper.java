@@ -20,7 +20,7 @@ public class DBHelper {
 		
 		try {
 			
-			DataSource ds = (DataSource) new InitialContext().lookup("java:comp/env/dbcp_java2_db");
+			DataSource ds = (DataSource) new InitialContext().lookup("java:comp/env/dbcp_java2_bookstore");
 			conn = ds.getConnection();
 			
 		}catch(Exception e) {
