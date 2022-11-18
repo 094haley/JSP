@@ -14,17 +14,9 @@
     <link rel="stylesheet" href="/Farmstory1/css/style.css">
     <link rel="stylesheet" href="/Farmstory1/user/css/style.css">
     <link rel="stylesheet" href="/Farmstory1/board/css/style.css">
-    
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
-		
-    	$(function(){
-
-	        $('#tabs').tabs();
-	        
-	    });
 	
 		let result = "<%= result %>";
 		if(result == '201') {

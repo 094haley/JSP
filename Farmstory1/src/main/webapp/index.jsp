@@ -22,6 +22,10 @@
 <script>
 	$(function(){
 		
+		/* 탭 위젯 
+	    $('#tabs').tabs();
+	    */    
+		
 		// 공지사항 최신글 가져오기
 		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=notice', function(data){
 			for(let latest of data) {
@@ -46,6 +50,11 @@
 			}
 		});
 
+		$('#tabs > ul > li').on("click", function(){
+			$('#tabs > ul > li:nthchild(1)').classList.remove();
+		});
+		
+		
 	});
 
 </script>
@@ -123,9 +132,9 @@
                 </p>
             </div>
             <div class="btns">
-                <a href=""><img src="./img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
-                <a href=""><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는 질문"></a>
-                <a href=""><img src="./img/main_sub2_cs_bt3.png" alt="배송 조회"></a>
+                <a href="#"><img src="./img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
+                <a href="#"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는 질문"></a>
+                <a href="#"><img src="./img/main_sub2_cs_bt3.png" alt="배송 조회"></a>
             </div>
         </div>
         <div>
@@ -141,7 +150,7 @@
         <div>
             <div id="tabs">
 	            <ul>
-	                <li><a href="#tabs-1">공지사항</a></li>
+	                <li class="on"><a href="#tabs-1">공지사항</a></li>
 	                <li><a href="#tabs-2">1:1 고객문의</a></li>
 	                <li><a href="#tabs-3">자주묻는 질문</a></li>
 	            </ul>
