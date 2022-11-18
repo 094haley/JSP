@@ -20,11 +20,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
 		
-    	$(function(){
-
-	        $('#tabs').tabs();
-	        
-	    });
 	
 		let result = "<%= result %>";
 		if(result == '201') {

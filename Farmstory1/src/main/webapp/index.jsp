@@ -22,6 +22,11 @@
 <script>
 	$(function(){
 		
+
+		// 탭 설정
+	    //$('#tabs').tabs();
+		
+		
 		// 공지사항 최신글 가져오기
 		$.get('/Farmstory1/board/proc/getLatest.jsp?cate=notice', function(data){
 			for(let latest of data) {
@@ -46,6 +51,20 @@
 			}
 		});
 
+		
+		// 탭 설정
+		$('#tabs-1').nextAll().hide();
+		
+		$('#tabs > ul > li').on('click', function(){
+			// 모든탭의 클래스값을 off로 변경 후 클릭한 탭만 on으로 변경
+			$('#tabs > ul > li').attr('class', 'off');
+			$(this).attr('class', 'on');
+			
+			$('#tabs-1').nextAll().hide();
+			$('#tabs-1').hide();
+			$('div:target').show();
+		});	
+		
 	});
 
 </script>
@@ -141,9 +160,9 @@
         <div>
             <div id="tabs">
 	            <ul>
-	                <li><a href="#tabs-1">공지사항</a></li>
-	                <li><a href="#tabs-2">1:1 고객문의</a></li>
-	                <li><a href="#tabs-3">자주묻는 질문</a></li>
+	                <li class="on"><a href="#tabs-1">공지사항</a></li>
+	                <li class="off"><a href="#tabs-2">1:1 고객문의</a></li>
+	                <li class="off"><a href="#tabs-3">자주묻는 질문</a></li>
 	            </ul>
             <div id="tabs-1">
                 <ul class="txt txt-notice"></ul>
