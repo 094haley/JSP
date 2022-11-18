@@ -17,10 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
-<<<<<<< HEAD
-=======
-		
->>>>>>> 9fba71b09f2eaf089bca73ac89dd6f8ab5c700bd
 	
 		let result = "<%= result %>";
 		if(result == '201') {

@@ -224,11 +224,8 @@ main > .info > div > .btns {margin-top: 16px;}
 
 main > .info > div > .account {line-height: 18px; color: #666;}
 
-<<<<<<< HEAD
-/* 탭 설정
-=======
-/* 위젯 탭 설정
->>>>>>> 9fba71b09f2eaf089bca73ac89dd6f8ab5c700bd
+
+/* 탭 커스텀 */
 .ui-widget.ui-widget-content {
     border: none;
 }
@@ -273,28 +270,18 @@ main > .info > div > .account {line-height: 18px; color: #666;}
 
 #tabs .txt > li > a {
     color: #666;
-}*/
+}
 
 
-/* 탭 설정*/
+/* 탭 설정
 #tabs {
     margin-top: 5px;
     width: 350px;
     height: auto;
     margin-left: 10px;
 }
-<<<<<<< HEAD
- */
- 
- /* 탭 */
-#tabs {
-    margin-top: 5px;
-    width: 350px;
-    height: auto;
-    margin-left: 10px;
-}
-=======
->>>>>>> 9fba71b09f2eaf089bca73ac89dd6f8ab5c700bd
+
+
  #tabs > ul {
     border-bottom: 1px solid #aaaaaa;
  }
@@ -307,12 +294,6 @@ main > .info > div > .account {line-height: 18px; color: #666;}
     line-height: 26px;
     padding: 0 5px;
     border: 1px solid #d1d1d1;
-<<<<<<< HEAD
-    border-bottom: none;
-    box-sizing: border-box;
-    background-color: #f3f3f3;
- }
-=======
     border-bottom: 1px solid #aaaaaa;
     box-sizing: border-box;
     background-color: #f3f3f3;
@@ -322,7 +303,6 @@ main > .info > div > .account {line-height: 18px; color: #666;}
     border: 1px solid #aaaaaa;
     background-color: #e1dede
  }
->>>>>>> 9fba71b09f2eaf089bca73ac89dd6f8ab5c700bd
  
  #tabs > ul > .on {
     background-color: #fff;
@@ -348,12 +328,7 @@ main > .info > div > .account {line-height: 18px; color: #666;}
 #tabs .txt > li > a {
     color: #666;
 }
-<<<<<<< HEAD
- 
- 
-=======
-
->>>>>>> 9fba71b09f2eaf089bca73ac89dd6f8ab5c700bd
+*/
 
 /* 푸터 */
 footer {

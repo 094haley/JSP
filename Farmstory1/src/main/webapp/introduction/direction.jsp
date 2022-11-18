@@ -28,8 +28,6 @@
 	                <!-- 1. 지도 노드 -->
 	                <div id="daumRoughmapContainer1668214668575" class="root_daum_roughmap root_daum_roughmap_landing"></div>
                 </p>
-
-
 	            <!--
 	                2. 설치 스크립트
 	                * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
