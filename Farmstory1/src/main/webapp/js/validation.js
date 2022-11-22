@@ -5,12 +5,12 @@
  */
 
 // 데이터 검증에 사용하는 정규표현식
-let reUid = /^[a-z]+[a-z0-9]{5,19}$/g;
-let rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
-let reName = /^[ㄱ-힣]+$/;
-let reNick = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
-let reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-let reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
+let regUid = /^[a-z]+[a-z0-9]{5,19}$/g;
+let regPass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
+let regName = /^[ㄱ-힣]+$/;
+let regNick = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
+let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+let regHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
 
 // 폼 데이터 검증 결과 상태변수
 let isUidOk = false;
@@ -35,7 +35,7 @@ $(function() {
 			return;
 		}
 
-		if (!uid.match(reUid)) {
+		if (!uid.match(regUid)) {
 			isUidOk = false;
 			$('.uidResult').css('color', 'red').text('유효한 아이디가 아닙니다.');
 			return;
@@ -76,7 +76,7 @@ $(function() {
 		let pass1 = $('input[name=pass1]').val();
 		let pass2 = $('input[name=pass2]').val();
 
-		if (pass2.match(rePass)) {
+		if (pass2.match(regPass)) {
 			if (pass1 == pass2) {
 				isPassOk = true;
 				$('.passResult').css('color', 'green').text('사용하실 수 있는 비밀번호 입니다..');
@@ -98,7 +98,7 @@ $(function() {
 
 		let name = $(this).val();
 
-		if (name.match(reName)) {
+		if (name.match(regName)) {
 			isNameOk = true;
 			$('.nameResult').text('');
 		} else {
@@ -122,7 +122,7 @@ $(function() {
 			return;
 		}
 
-		if (!nick.match(reNick)) {
+		if (!nick.match(regNick)) {
 			isNickOk = false;
 			$('.nickResult').css('color', 'red').text('유효한 별명이 아닙니다.');
 			return;
@@ -161,7 +161,7 @@ $(function() {
 
 		let email = $(this).val();
 
-		if (email.match(reEmail)) {
+		if (email.match(regEmail)) {
 			isEmailOk = true;
 			$('.emailResult').text('');
 		} else {
@@ -175,7 +175,7 @@ $(function() {
 
 		let hp = $(this).val();
 
-		if (hp.match(reHp)) {
+		if (hp.match(regHp)) {
 			isHpOk = true;
 			$('.hpResult').text('');
 		} else {
