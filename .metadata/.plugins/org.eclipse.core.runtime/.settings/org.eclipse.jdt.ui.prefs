@@ -1,0 +1,12 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="db.DBHelper"><rhs name\="dao.User4DAO"/><rhs name\="dao.User5DAO"/><rhs name\="dao.User6DAO"/><rhs name\="dao.User2DAO"/></lhs><lhs name\="dao.User2DAO"><rhs name\="dao.User2DAO"/></lhs><lhs name\="dao.User3DAO"><rhs name\="dao.User3DAO"/></lhs><lhs name\="dao.User4DAO"><rhs name\="dao.User4DAO"/></lhs><lhs name\="dao.User5DAO"><rhs name\="dao.User5DAO"/></lhs><lhs name\="dao.User6DAO"><rhs name\="dao.User6DAO"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="vo.User2VO"><rhs name\="vo.User2VO"/></lhs><lhs name\="vo.User3VO"><rhs name\="vo.User3VO"/></lhs><lhs name\="vo.User4VO"><rhs name\="vo.User4VO"/></lhs><lhs name\="vo.User5VO"><rhs name\="vo.User5VO"/></lhs><lhs name\="vo.User6VO"><rhs name\="vo.User6VO"/></lhs><lhs name\="kr.co.farmstory1.bean.ArticleBean"><rhs name\="kr.co.farmstory1.bean.ArticleBean"/></lhs></history>
+content_assist_number_of_computers=17
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=22
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
