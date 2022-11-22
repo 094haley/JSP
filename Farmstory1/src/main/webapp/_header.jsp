@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>팜스토리::메인</title>
+    <title>팜스토리</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
     <link rel="stylesheet" href="/Farmstory1/css/style.css">
