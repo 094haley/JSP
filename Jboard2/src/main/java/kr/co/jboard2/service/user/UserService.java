@@ -46,6 +46,12 @@ public enum UserService {
 		return dao.selectCountNick(nick);
 	}
 	
+	/*
+	public int selectCheckUid(UserVO vo) {
+		return dao.selectCheckUid(vo);
+	}
+	*/
+	
 	public void updatetUser() {}
 	public void deleteUser() {}
 	

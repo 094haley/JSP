@@ -109,6 +109,22 @@ public class UserDAO extends DBHelper {
 		return result;
 	}
 	
+	/*
+	public int selectCheckUid(UserVO vo) {
+		int result = 0;
+		try {
+			logger.info("selectCheckUid");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_CHECK_UID);
+			
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	*/
+	
 	public void updateUser() {}
 	public void deleteUser() {}
 	
