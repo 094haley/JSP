@@ -2,22 +2,17 @@ package kr.co.jboard2.controller.user;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import kr.co.jboard2.dao.UserDAO;
-import kr.co.jboard2.service.user.UserService;
-import kr.co.jboard2.vo.TermsVO;
-
-@WebServlet("/user/terms.do")
-public class TermsController extends HttpServlet {
+@WebServlet("/user/logout.do")
+public class LogoutController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {}
@@ -25,11 +20,11 @@ public class TermsController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		TermsVO terms = service.selectTerms();
-		req.setAttribute("terms", terms);
+		HttpSession sess = req.getSession();
+		sess.removeAttribute("sessUser");
+		sess.invalidate();
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/terms.jsp");
-		dispatcher.forward(req, resp);
+		resp.sendRedirect("/Jboard2/user/login.do?success=200");
 	}
 	
 	@Override

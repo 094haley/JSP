@@ -35,7 +35,18 @@ public enum UserService {
 	public TermsVO selectTerms() {
 		return dao.selectTerms();
 	}
-	public void selectUser() {}
+	public UserVO selectUser(String uid, String pass) {
+		return dao.selectUser(uid, pass);
+	}
+	
+	public UserVO selectUserForFindId(String name, String email) {
+		return dao.selectUserForFindId(name, email);
+	}
+	
+	public UserVO selectUserForFindPw(String uid, String email) {
+		return dao.selectUserForFindPw(uid, email);
+	}
+	
 	public void selectUsers() {}
 	
 	public int selectCountUid(String uid) {
@@ -46,13 +57,12 @@ public enum UserService {
 		return dao.selectCountNick(nick);
 	}
 	
-	/*
-	public int selectCheckUid(UserVO vo) {
-		return dao.selectCheckUid(vo);
-	}
-	*/
-	
 	public void updatetUser() {}
+	
+	public int updateUserPassword(String uid, String pass) {
+		return dao.updateUserPassword(uid, pass);
+	}
+	
 	public void deleteUser() {}
 	
 	public int[] sendEmailCode(String receiver) {

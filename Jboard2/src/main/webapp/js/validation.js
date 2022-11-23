@@ -71,7 +71,7 @@ $(function() {
 	});
 
 
-	// 비밀번호 검사하기
+	// 비밀번호 일치여부 확인
 	$('input[name=pass2]').focusout(function() {
 
 		let pass1 = $('input[name=pass1]').val();
