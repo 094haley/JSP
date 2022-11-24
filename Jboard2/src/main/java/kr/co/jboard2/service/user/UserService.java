@@ -47,6 +47,10 @@ public enum UserService {
 		return dao.selectUserForFindPw(uid, email);
 	}
 	
+	public UserVO selectUserBySessId(String sessId) {
+		return dao.selectUserBySessId(sessId);
+	}
+	
 	public void selectUsers() {}
 	
 	public int selectCountUid(String uid) {
@@ -58,6 +62,19 @@ public enum UserService {
 	}
 	
 	public void updatetUser() {}
+	
+	public void updateUserForSession(String uid, String sessId) {
+		dao.updateUserForSession(uid, sessId);
+	}
+	
+	public void updateUserForSessLimitDate(String sessId) {
+		dao.updateUserForSessLimitDate(sessId);
+	}
+	
+	public void updateUserForSessionOut(String uid) {
+		dao.updateUserForSessionOut(uid);
+	}
+
 	
 	public int updateUserPassword(String uid, String pass) {
 		return dao.updateUserPassword(uid, pass);

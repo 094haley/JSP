@@ -1,28 +1,50 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script>
+	/*
+	$(document).ready(function(){
+		
+		// 글 삭제
+		
+		// 댓글 삭제
+		
+		// 댓글 수정
+		
+		// 댓글 작성
+		$('.commentForm > form').submit(function(){
+			
+			let no = $(this).children('input[name=no]').val();
+			
+			
+		});
+		
+		
+	});
+	*/
+	
+</script>
         <main id="board">
-            <section class="view">
-                
+            <section class="view">                
                 <table border="0">
                     <caption>글보기</caption>
                     <tr>
                         <th>제목</th>
-                        <td><input type="text" name="title" value="제목입니다." readonly/></td>
+                        <td><input type="text" name="title" value="${article.title}" readonly/></td>
                     </tr>
                     <tr>
                         <th>파일</th>
-                        <td><a href="#">2020년 상반기 매출자료.xls</a>&nbsp;<span>7</span>회 다운로드</td>
+                        <td><a href="#">${article.oriName}</a>&nbsp;<span>${article.download}</span>회 다운로드</td>
                     </tr>
                     <tr>
                         <th>내용</th>
                         <td>
-                            <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                            <textarea name="content" readonly>${article.content}</textarea>
                         </td>
                     </tr>                    
                 </table>
                 
                 <div>
-                    <a href="#" class="btn btnRemove">삭제</a>
+                    <a href="./delete.do" class="btn btnRemove">삭제</a>
                     <a href="./modify.do" class="btn btnModify">수정</a>
                     <a href="./list.do" class="btn btnList">목록</a>
                 </div>
@@ -49,7 +71,7 @@
                 <section class="commentForm">
                     <h3>댓글쓰기</h3>
                     <form action="#">
-                        <textarea name="content">댓글내용 입력</textarea>
+                        <textarea name="content" placeholder="댓글 내용을 입력하세요."></textarea>
                         <div>
                             <a href="#" class="btn btnCancel">취소</a>
                             <input type="submit" value="작성완료" class="btn btnComplete"/>

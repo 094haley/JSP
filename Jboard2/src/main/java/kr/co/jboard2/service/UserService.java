@@ -19,11 +19,21 @@ public enum UserService {
 		dao = new ArticleDAO();
 	}
 	
-	public void insertUser() {}
+	public int insertArticle(ArticleVO article) {
+		return dao.insertArticle(article);
+	}
+	
+	public void insertFile(int parent, String newName, String fname) {
+		dao.insertFile(parent, newName, fname);
+	}
+	
 	public void selectUser() {}
 	public void selectUsers() {}
 	
-	public void selectArticle(){}
+	public ArticleVO selectArticle(String no){
+		return dao.selectArticle(no);
+	}
+	
 	public List<ArticleVO> selectArticles(int limitStart){
 		return dao.selectArticles(limitStart);
 	}
@@ -32,7 +42,10 @@ public enum UserService {
 		return dao.selectCountTotal();
 	}
 	
-	public void updatetUser() {}
+	public void updateArticleHit(String no) {
+		dao.updateArticleHit(no);
+	}
+	
 	public void deleteUser() {}
 	
 }
