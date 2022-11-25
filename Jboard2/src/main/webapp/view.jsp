@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
 <script>
 	/*
@@ -18,7 +19,6 @@
 			
 		});
 		
-		
 	});
 	*/
 	
@@ -31,10 +31,12 @@
                         <th>제목</th>
                         <td><input type="text" name="title" value="${article.title}" readonly/></td>
                     </tr>
+                    <c:if test="${article.file > 0}">
                     <tr>
-                        <th>파일</th>
-                        <td><a href="#">${article.oriName}</a>&nbsp;<span>${article.download}</span>회 다운로드</td>
+                        <th>첨부파일</th>
+                        <td><a href="/Jboard2/downloadfile.do?parent=${article.no}">${article.oriName}</a>&nbsp;<span>${article.download}</span>회 다운로드</td>
                     </tr>
+                    </c:if>
                     <tr>
                         <th>내용</th>
                         <td>
@@ -44,9 +46,9 @@
                 </table>
                 
                 <div>
-                    <a href="./delete.do" class="btn btnRemove">삭제</a>
-                    <a href="./modify.do" class="btn btnModify">수정</a>
-                    <a href="./list.do" class="btn btnList">목록</a>
+                    <a href="/Jboard2/delete.do?no=${article.no}&pg=${pg}" class="btn btnRemove">삭제</a>
+                    <a href="/Jboard2/modify.do?no=${article.no}&pg=${pg}" class="btn btnModify">수정</a>
+                    <a href="/Jboard2/list.do?pg=${pg}" class="btn btnList">목록</a>
                 </div>
 
                 <!-- 댓글목록 -->

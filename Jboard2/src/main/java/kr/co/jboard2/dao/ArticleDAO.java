@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.jboard2.db.DBHelper;
 import kr.co.jboard2.db.Sql;
 import kr.co.jboard2.vo.ArticleVO;
+import kr.co.jboard2.vo.FileVO;
 
 public class ArticleDAO extends DBHelper {
 
@@ -142,6 +143,34 @@ public class ArticleDAO extends DBHelper {
 		return articles;
 	}
 	
+	public FileVO selectFile(String parent) {
+		FileVO file = null;
+		
+		try {
+			logger.info("selectFile");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_FILE);
+			psmt.setString(1, parent);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				file = new FileVO();
+				file.setFno(rs.getInt(1));
+				file.setParent(rs.getInt(2));
+				file.setNewName(rs.getString(3));
+				file.setOriName(rs.getString(4));
+				file.setDownload(rs.getInt(5));
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return file;
+	}
+	
 	public int selectCountTotal() {
 		int total = 0;
 		
@@ -180,6 +209,21 @@ public class ArticleDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		
+	}
+	
+	public void updateFileDownload(int fno) {
+		try {
+			logger.info("updateFileDownload");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);
+			psmt.setInt(1, fno);
+			psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 	
 	public void deleteArticle(){}

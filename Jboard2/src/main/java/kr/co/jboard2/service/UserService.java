@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.jboard2.dao.ArticleDAO;
 import kr.co.jboard2.vo.ArticleVO;
+import kr.co.jboard2.vo.FileVO;
 import kr.co.jboard2.vo.TermsVO;
 
 public enum UserService {
@@ -27,8 +28,6 @@ public enum UserService {
 		dao.insertFile(parent, newName, fname);
 	}
 	
-	public void selectUser() {}
-	public void selectUsers() {}
 	
 	public ArticleVO selectArticle(String no){
 		return dao.selectArticle(no);
@@ -38,12 +37,21 @@ public enum UserService {
 		return dao.selectArticles(limitStart);
 	}
 	
+	public FileVO selectFile(String parent) {
+		return dao.selectFile(parent);
+	}
+	
+	
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
 	}
 	
 	public void updateArticleHit(String no) {
 		dao.updateArticleHit(no);
+	}
+	
+	public void updateFileDownload(int fno) {
+		dao.updateFileDownload(fno);
 	}
 	
 	public void deleteUser() {}

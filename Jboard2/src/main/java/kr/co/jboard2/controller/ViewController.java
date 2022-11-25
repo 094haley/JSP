@@ -25,6 +25,8 @@ public class ViewController extends HttpServlet {
 		
 		String no = req.getParameter("no");
 		String pg = req.getParameter("pg");
+		
+		req.setAttribute("pg", pg);
 	
 		// 조회수 +1
 		service.updateArticleHit(no);
