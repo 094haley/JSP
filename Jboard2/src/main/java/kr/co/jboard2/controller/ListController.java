@@ -10,16 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jboard2.service.UserService;
+import kr.co.jboard2.service.ArticleService;
 import kr.co.jboard2.vo.ArticleVO;
-import kr.co.jboard2.vo.PageVO;
 
 
 @WebServlet("/list.do")
 public class ListController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
+	private ArticleService service = ArticleService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {}
@@ -28,63 +27,40 @@ public class ListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String pg = req.getParameter("pg");
+		String result = req.getParameter("result");
 		
-		// 게시물 목록 처리 관련 변수 선언
-		int limitStart = 0;
-		int currentPage = 1;
-		int total = 0;
-		int lastPageNum = 0;
-		int pageGroupCurrent = 1;
-		int pageGroupStart = 1;
-		int pageGroupEnd = 0;
-		int pageStartNum = 0;
 		
-		// 전체 게시물 갯수 구하기
-		total = service.selectCountTotal();
+		// 현재 페이지 번호
+		int currentPage = service.getCurrentPage(pg);
 		
-		// 페이지 마지막 번호 계산
-		if(total % 10 == 0) {
-			lastPageNum = (total / 10);
-		}else {
-			lastPageNum = (total / 10) + 1;
-		}
+		// 전체 게시물 갯수 
+		int total = service.selectCountTotal();
 		
-		// 현재 페이지 게시물 limit 시작값 계산
-		if(pg != null) {
-			currentPage = Integer.parseInt(pg);
-		}
+		// 페이지 마지막 번호 
+		int lastPageNum = service.getLastPageNum(total);
 		
-		limitStart = (currentPage -1) * 10;
+		// 페이지 그룹 start, end 번호
+		int[] pageGroup = service.getPageGroupNum(currentPage, lastPageNum);
 		
-		// 페이지 그룹 계산
-		pageGroupCurrent = (int)Math.ceil(currentPage / 10.0);
-		pageGroupStart = (pageGroupCurrent -1) * 10 + 1;
-		pageGroupEnd = pageGroupCurrent * 10;
+		// 시작 인덱스
+		int start = service.getStartNum(currentPage);
 		
-		if(pageGroupEnd > lastPageNum) {
-			pageGroupEnd = lastPageNum;
-		}
-		
-		// 페이지 시작 번호 계산
-		pageStartNum = total - limitStart;
-		
-		PageVO vo = new PageVO();
-		vo.setLimitStart(limitStart);
-		vo.setCurrentPage(currentPage);
-		vo.setTotal(total);
-		vo.setLastPageNum(lastPageNum);
-		vo.setPageGroupCurrent(pageGroupCurrent);
-		vo.setPageGroupStart(pageGroupStart);
-		vo.setPageGroupEnd(pageGroupEnd);
-		vo.setPageStartNum(pageStartNum);
-		
-		// 페이지 관련 변수값 넘기기
-		req.setAttribute("vo", vo);
+		// 페이지 시작 번호
+		int pageStartNum = total - start;
+
 		
 		// 현재 페이지 게시물 가져오기
-		List<ArticleVO> articles = service.selectArticles(limitStart);
-		req.setAttribute("articles", articles);
+		List<ArticleVO> articles = service.selectArticles(start);
 		
+		req.setAttribute("articles", articles);
+		req.setAttribute("result", result);
+		
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("lastPageNum", lastPageNum);
+		req.setAttribute("pageGroupStart", pageGroup[0]);
+		req.setAttribute("pageGroupEnd", pageGroup[1]);
+		req.setAttribute("pageStartNum", pageStartNum+1);
+			
 		RequestDispatcher dispatcher = req.getRequestDispatcher("./list.jsp");
 		dispatcher.forward(req, resp);
 	}

@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.jboard2.vo.UserVO;
 
-@WebFilter("/*")
 public class LoginCheckFilter implements Filter {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -30,7 +29,6 @@ public class LoginCheckFilter implements Filter {
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		
 		// 필터를 동작할 요청주소 리스트 구성
 		uriList = new ArrayList<>();
 		uriList.add("/Jboard2/list.do");
@@ -44,18 +42,26 @@ public class LoginCheckFilter implements Filter {
 		logger.info("LoginCheckFilter doFilter...");
 		
 		HttpServletRequest req = (HttpServletRequest)request;
-		
 		String uri = req.getRequestURI();
 		
+		HttpSession sess = req.getSession();
+		UserVO sessUser = (UserVO)sess.getAttribute("sessUser");
+		
 		if(uriList.contains(uri)) {
-			HttpSession sess = req.getSession();
-			UserVO sessUser = (UserVO)sess.getAttribute("sessUser");
 			
+			// 로그인을 하지 않았을 경우
 			if(sessUser == null) {
 				((HttpServletResponse)response).sendRedirect("/Jboard2/user/login.do");
 				return;
 			}
+			
+		}else if(uri.contains("/user/login.do")){
+			if(sessUser !=null) {
+				((HttpServletResponse)response).sendRedirect("/Jboard2/list.do");
+				return;
+			}
 		}
+		
 		chain.doFilter(request, response);
 	}
 }

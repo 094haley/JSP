@@ -18,8 +18,8 @@
                     </tr>
                 	<c:forEach var="article" items="${articles}">                   
                     <tr>
-                        <td>${article.no}</td>
-                        <td><a href="./view.do?no=${article.no}&pg=${vo.currentPage}">${article.title}[${article.comment}]</a></td>
+                        <td>${pageStartNum = pageStartNum-1}</td>
+                        <td><a href="./view.do?no=${article.no}&pg=${currentPage}">${article.title}[${article.comment}]</a></td>
                         <td>${article.nick}</td>
                         <td>${article.rdate}</td>
                         <td>${article.hit}</td>
@@ -28,14 +28,14 @@
                 </table>
 
                 <div class="page">
-                	<c:if test="${vo.pageGroupStart > 1}">
-                    <a href="/Jboard2/list.do?pg=${vo.pageGroupStart - 1}" class="prev">이전</a>
+                	<c:if test="${pageGroupStart > 1}">
+                    <a href="/Jboard2/list.do?pg=${pageGroupStart - 1}" class="prev">이전</a>
                     </c:if>
-                    <c:forEach var="i" begin="${vo.pageGroupStart}" end="${vo.pageGroupEnd}">
-                    <a href="/Jboard2/list.do?pg=${i}" class="num ${vo.currentPage == i ? 'current':'off'}">${i}</a>
+                    <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}">
+                    <a href="/Jboard2/list.do?pg=${i}" class="num ${currentPage == i ? 'current':'off'}">${i}</a>
                     </c:forEach>
-					<c:if test="${vo.pageGroupEnd < vo.lastPageNum}">
-                    <a href="/Jboard2/list.do?pg=${vo.pageGroupEnd + 1}" class="next">다음</a>
+					<c:if test="${pageGroupEnd < lastPageNum}">
+                    <a href="/Jboard2/list.do?pg=${pageGroupEnd + 1}" class="next">다음</a>
                     </c:if>
                 </div>
 

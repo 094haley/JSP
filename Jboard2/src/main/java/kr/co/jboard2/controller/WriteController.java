@@ -19,13 +19,12 @@ import org.slf4j.LoggerFactory;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.co.jboard2.service.UserService;
+import kr.co.jboard2.service.ArticleService;
 import kr.co.jboard2.vo.ArticleVO;
 @WebServlet("/write.do")
 public class WriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
-	
+	private ArticleService service = ArticleService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {}
@@ -40,17 +39,11 @@ public class WriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		ServletContext application = req.getServletContext();
+		// 파일 업로드
+		ServletContext ctx = req.getServletContext();
+		String path = ctx.getRealPath("/file");
 		
-		// multipart 폼 데이터 수신
-		String savePath = application.getRealPath("/file");
-		File targetDir = new File(savePath);
-		if(!targetDir.exists()) {
-			targetDir.mkdirs();
-		}
-		
-		int maxSize = 1024 * 1024 * 10;
-		MultipartRequest mr = new MultipartRequest(req, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest mr = service.uploadFile(req, path);
 		
 		String title = mr.getParameter("title");
 		String content = mr.getParameter("content");
@@ -70,23 +63,11 @@ public class WriteController extends HttpServlet {
 		
 		// 파일을 첨부했으면
 		if(fname != null) {
-			
 			// 파일명 수정
-			int i = fname.lastIndexOf(".");
-			String ext = fname.substring(i);
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss_");
-			String now = sdf.format(new Date());
-			String newName = now+uid+ext;
-			
-			File f1 = new File(savePath+"/"+fname);
-			File f2 = new File(savePath+"/"+newName);
-			
-			f1.renameTo(f2);
+			String newName = service.renameFile(fname, uid, path);
 			
 			// 파일 테이블 Insert
 			service.insertFile(parent, newName, fname);
-			
 		}
 		resp.sendRedirect("/Jboard2/list.do");
 	}
