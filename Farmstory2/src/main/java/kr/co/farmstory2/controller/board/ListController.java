@@ -24,11 +24,9 @@ public class ListController extends HttpServlet {
 		
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
-		String pg = req.getParameter("pg");
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
-		req.setAttribute("pg", pg);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/list.jsp");
