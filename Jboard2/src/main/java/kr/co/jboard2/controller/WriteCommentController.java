@@ -45,8 +45,6 @@ public class WriteCommentController extends HttpServlet {
 		
 		// 작성한 댓글을 json데이터로 보내기
 		service.sendComment(article, resp);
-		
-		
+			
 	}
-
 }

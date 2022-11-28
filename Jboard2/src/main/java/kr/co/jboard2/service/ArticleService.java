@@ -58,6 +58,10 @@ public enum ArticleService {
 		return dao.selectArticles(start);
 	}
 	
+	public List<ArticleVO> selectArticlesByKeyWord(String keyword, int start){
+		return dao.selectArticlesByKeyWord(keyword, start);
+	}
+	
 	public List<ArticleVO> selectComments(String parent) {
 		return dao.selectComments(parent);
 	}
@@ -66,9 +70,12 @@ public enum ArticleService {
 		return dao.selectFile(parent);
 	}
 	
-	
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
+	}
+	
+	public int selectCountTotal(String search) {
+		return dao.selectCountTotal(search);
 	}
 	
 	public void updateArticle(String no, String title, String content) {
@@ -232,6 +239,7 @@ public enum ArticleService {
 		json.addProperty("date", article.getRdate());
 		json.addProperty("content", article.getContent());
 		
+		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
 
