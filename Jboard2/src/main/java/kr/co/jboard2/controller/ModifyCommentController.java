@@ -1,6 +1,7 @@
 package kr.co.jboard2.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jboard2.service.ArticleService;
-import kr.co.jboard2.vo.ArticleVO;
+import com.google.gson.JsonObject;
 
-@WebServlet("/writecomment.do")
-public class WriteCommentController extends HttpServlet {
-	
+import kr.co.jboard2.service.ArticleService;
+
+@WebServlet("/modifycomment.do")
+public class ModifyCommentController extends HttpServlet{
+
 	private static final long serialVersionUID = 1L;
 	private ArticleService service = ArticleService.INSTANCE;
-	
 	
 	@Override
 	public void init() throws ServletException {}
@@ -31,21 +32,11 @@ public class WriteCommentController extends HttpServlet {
 		
 		String no = req.getParameter("no");
 		String content = req.getParameter("content");
-		String uid = req.getParameter("uid");
-		String regip = req.getRemoteAddr();
 		
-		ArticleVO comment = new ArticleVO();
-		comment.setParent(no);
-		comment.setContent(content);
-		comment.setUid(uid);
-		comment.setRegip(regip);
-
-		// 댓글 작성
-		ArticleVO article = service.insertComment(comment);
+		int result = service.updateComment(no, content);
 		
-		// 작성한 댓글을 json데이터로 보내기
-		service.sendComment(article, resp);
-		
+		// result 값 보내기
+		service.sendResult(result, resp);
 		
 	}
 

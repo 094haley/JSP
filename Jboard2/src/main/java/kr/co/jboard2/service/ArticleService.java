@@ -15,7 +15,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.co.jboard2.dao.ArticleDAO;
 import kr.co.jboard2.vo.ArticleVO;
 import kr.co.jboard2.vo.FileVO;
-import kr.co.jboard2.vo.TermsVO;
 
 public enum ArticleService {
 
@@ -85,12 +83,20 @@ public enum ArticleService {
 		dao.updateFileDownload(fno);
 	}
 	
+	public int updateComment(String no, String content) {
+		return dao.updateComment(no, content);
+	}
+	
 	public void deleteArticle(String no) {
 		dao.deleteArticle(no);
 	}
 	
 	public String deleteFile(String no) {
 		return dao.deleteFile(no);
+	}
+	
+	public int deleteComment(String no, String parent) {
+		return dao.deleteComment(no, parent);
 	}
 	
 	
@@ -226,11 +232,19 @@ public enum ArticleService {
 		json.addProperty("date", article.getRdate());
 		json.addProperty("content", article.getContent());
 		
-		String jsonData = json.toString();
-		
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
 
+	}
+	
+	public void sendResult(int result, HttpServletResponse resp) throws IOException {
+		
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+		
 	}
 		
 }

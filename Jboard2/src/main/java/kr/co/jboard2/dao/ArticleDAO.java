@@ -330,6 +330,26 @@ public class ArticleDAO extends DBHelper {
 		}
 	}
 	
+	public int updateComment(String no, String content) {
+		int result = 0;
+		
+		try {
+			logger.info("updateComment");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			
+			result = psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
 	public void deleteArticle(String no){
 		
 		try {
@@ -376,6 +396,34 @@ public class ArticleDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return newName;
+	}
+	
+	public int deleteComment(String no, String parent) {
+		int result = 0;
+		
+		try {
+			logger.info("deleteComment");
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.DELETE_COMMENT);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_MINUS);
+			psmt1.setString(1, no);
+			psmt2.setString(1, parent);
+			
+			result = psmt1.executeUpdate();
+			psmt2.executeUpdate();
+			conn.commit();
+			
+			psmt1.close();
+			psmt2.close();
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
 	}
 	
 	

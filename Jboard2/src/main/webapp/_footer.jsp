@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
         <footer>
-            <p>ⓒCopyright haley094.or.kr</p>
+            <p>ⓒCopyright 094haley.or.kr</p>
         </footer>
     </div>    
 </body>

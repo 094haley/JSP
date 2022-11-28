@@ -1,64 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
-<script>
-	$(document).ready(function(){
-		
-		// 글 삭제
-		
-		// 댓글 삭제
-		
-		// 댓글 수정
-		
-		// 댓글 작성
-		$('.commentForm > form').submit(function(){
-			
-			let no 		 = $(this).children('input[name=no]').val();
-			let uid 	 = $(this).children('input[name=uid]').val();
-			let textarea = $(this).children('textarea[name=content]');
-			let content  = textarea.val();
-			
-			if(content == ''){
-				alert('댓글을 작성하세요');
-				return false;
-			}
-			
-			let jsonData = {
-					"no" : no,
-					"uid" : uid,
-					"content" : content,	
-			}
-			
-			$.ajax({
-				url: '/Jboard2/writecomment.do',
-				method: 'POST',
-				data: jsonData,
-				dataType: 'json',
-				success: function(data) {
-					
-					if(data.result > 0){
-						
-						let article = "<article>";
-							article += "<span class='nick'>"+data.nick+"</span>";
-							article += "<span class='date'>"+data.date+"</span>";
-							article += "<p class='content'>"+data.content+"</p>";
-							article += "<div>";
-							article += "<a href='#' class='remove' data-no='"+data.no+"' data-parent=''"+data.parent+">삭제</a>";							
-							article += "<a href='#' class='modify' data-no='"+data.no+"'>수정</a>";							
-							article += "</div>";
-							article += "</article>";
-							
-							$('.commentList > .empty').hide();
-							$('.commentList').append(article);
-							textarea.val('');
-					}
-				}
-			});
-			return false;
-		});
-		
-	});
-</script>
+<script src="/Jboard2/js/view.js"></script>
         <main id="board">
             <section class="view">                
                 <table border="0">
@@ -82,8 +25,10 @@
                 </table>
                 
                 <div>
+                	<c:if test="${sessUser.uid eq article.uid}">
                     <a href="/Jboard2/delete.do?no=${article.no}&pg=${pg}" class="btn btnRemove">삭제</a>
                     <a href="/Jboard2/modify.do?no=${article.no}&pg=${pg}" class="btn btnModify">수정</a>
+                    </c:if>
                     <a href="/Jboard2/list.do?pg=${pg}" class="btn btnList">목록</a>
                 </div>
 
@@ -94,11 +39,13 @@
                     <article>
                         <span class="nick">${comment.nick}</span>
                         <span class="date">${(comment.rdate).substring(2, 10)}</span>
-                        <p class="content">${comment.content}</p>                        
+                        <p class="content">${comment.content}</p>        
+                        <c:if test="${sessUser.uid eq comment.uid}">               
                         <div>
                             <a href="#" class="remove" data-no="${comment.no}" data-parent="${comment.parent}">삭제</a>
                             <a href="#" class="modify" data-no="${comment.no}">수정</a>
                         </div>
+                        </c:if> 
                     </article>
 					</c:forEach>
 					<c:if test="${comments.size() == 0}">
