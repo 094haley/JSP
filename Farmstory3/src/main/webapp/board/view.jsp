@@ -59,4 +59,7 @@
 
             </section>
         </main>
+                </article>
+    </section>
+</div>
 <jsp:include page="/_footer.jsp"/>
