@@ -34,7 +34,8 @@
                         <tr>
                             <td>이름</td>
                             <td>
-                                <input type="text" name="name" placeholder="이름 입력"/>                        
+                                <input type="text" name="name" placeholder="이름 입력"/>
+                                <span class="nameResult"></span>                       
                             </td>
                         </tr>
                         <tr>
