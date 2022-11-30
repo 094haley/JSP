@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,17 @@
             });
 
             $('#tabs').tabs();
-        });
+            
+            let success = "${requestScope.success}";
+            if(success == '100'){
+            	alert('일치하는 회원이 없습니다.\n아이디, 비밀번호를 다시 한번 확인하십시오.');
+            }else if(success == '101'){
+            	alert('로그인을 먼저 하십시오.');
+            }else if(success == '200') {
+            	alert('로그아웃되었습니다.')
+            }
+            
+        });  
     </script>
 </head>
 <body>
@@ -31,8 +42,13 @@
             <a href="/Farmstory2/index.do" class="logo"><img src="/Farmstory2/img/logo.png" alt="로고"/></a>
             <p>
                 <a href="/Farmstory2">HOME |</a>
+                <c:if test="${empty sessUser}">
                 <a href="/Farmstory2/user/login.do">로그인 |</a>
                 <a href="/Farmstory2/user/terms.do">회원가입 |</a>
+                </c:if>
+                <c:if test="${not empty sessUser}">
+                <a href="/Farmstory2/user/logout.do">로그아웃 |</a>
+                </c:if>
                 <a href="#">고객센터</a>
             </p>
             <img src="/Farmstory2/img/head_txt_img.png" alt="3만원 이상 무료배송"/>

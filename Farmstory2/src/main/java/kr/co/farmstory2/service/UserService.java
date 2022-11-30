@@ -37,17 +37,25 @@ public enum UserService {
 		dao.insertUser(user);
 	}
 	
-	public void selectUser() {}
+	public UserVO selectUser(String uid, String pass) {
+		return dao.selectUser(uid, pass);
+	}
 	
 	public TermsVO selectTerms() {
 		return dao.selectTerms();
 	}
 	
-	public void selectUserForFindId() {}
+	public UserVO selectUserForFindId(String name, String email) {
+		return dao.selectUserForFindId(name, email);
+	}
 	
-	public void selectUserForFindPw() {}
+	public UserVO selectUserForFindPw(String uid, String email) {
+		return dao.selectUserForFindPw(uid, email);
+	}
 	
-	public void selectUserBySessId() {}
+	public UserVO selectUserBySessId(String sessId) {
+		return dao.selectUserBySessId(sessId);
+	}
 	
 	public int selectCountUid(String uid) {
 		return dao.selectCountUid(uid);
@@ -65,13 +73,21 @@ public enum UserService {
 		return dao.selectCountHp(hp);
 	}
 	
-	public void updateUserForSession() {}
+	public void updateUserForSession(String uid, String sessId) {
+		dao.updateUserForSession(uid, sessId);
+	}
 	
-	public void updateUserForSessionLimitDate() {}
+	public void updateUserForSessionLimitDate(String sessId) {
+		dao.updateUserForSessionLimitDate(sessId);
+	}
 	
-	public void updateUserForSessionOut() {}
+	public void updateUserForSessionOut(String uid) {
+		dao.updateUserForSessionOut(uid);
+	}
 	
-	public void updateUserPassword() {}
+	public int updateUserPassword(String uid, String pass) {
+		return dao.updateUserPassword(uid, pass);
+	}
 	
 	public int[] sendEmailCode(String receiver) {
 		

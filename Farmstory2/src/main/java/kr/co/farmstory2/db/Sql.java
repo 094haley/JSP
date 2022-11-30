@@ -22,6 +22,15 @@ public class Sql {
 	public static final String SELECT_COUNT_NICK = "select count(`nick`) from `board_user` where `nick`=?";
 	public static final String SELECT_COUNT_EMAIL = "select count(`email`) from `board_user` where `email`=?";
 	public static final String SELECT_COUNT_HP = "select count(`hp`) from `board_user` where `hp`=?";
+	public static final String SELECT_USER_FOR_FIND_ID = "select * from `board_user` where `name`=? and `email`=?";
+	public static final String SELECT_USER_FOR_FIND_PW = "select * from `board_user` where `uid`=? and `email`=?";
+	public static final String SELECT_USER_BY_SESSID = "SELECT * FROM `board_user` WHERE `sessId`=? AND `sessLimitDate` > NOW()";
+	
+	
+	public static final String UPDATE_USER_PASSWORD = "update `board_user` set `pass`=SHA2(?, 256) where `uid`=?";
+	public static final String UPDATE_USER_FOR_SESSION = "UPDATE `board_user` SET `sessid`=?, `sessLimitDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) WHERE `uid`=?";
+	public static final String UPDATE_USER_FOR_SESS_LIMIT_DATE = "UPDATE `board_user` SET `sessLimitDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) WHERE `sessId`=?";
+	public static final String UPDATE_USER_FOR_SESSION_OUT = "UPDATE `board_user` SET `sessId`=NULL, `sessLimitDate` =Null WHERE `uid`=?";
 	
 	
 	// board
@@ -50,6 +59,9 @@ public class Sql {
 	public static final String SELECT_MAX_NO = "select max(`no`) from `board_article`";
 
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `board_article` WHERE `parent` = 0 AND `cate`=?";
+	public static final String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(`no`) FROM `board_article` As a "
+															+ "JOIN `board_user` AS b ON a.uid = b.uid "
+															+ " WHERE `parent` = 0 AND (`title` LIKE ? OR `nick` LIKE ?) ";
 	
 	public static final String SELECT_ARTICLES = "select a.*, b.nick from `board_article` as a "
 											    + "join `board_user` as b "
@@ -63,6 +75,11 @@ public class Sql {
 												+ "LEFT JOIN `board_file` AS b "
 												+ "ON a.`no` = b.`parent` "
 												+ "WHERE `no`=?";
+	
+	public static final String SELECT_ARTICLES_BY_KEYWORD = "SELECT a.*, b.nick FROM `board_article` AS a "
+															+ "JOIN `board_user` AS b ON a.uid = b.uid "
+															+ "WHERE `parent`=0 and `cate`=? AND (`title` LIKE ? OR `nick` LIKE ?) "
+															+ "ORDER BY `no` DESC LIMIT ?, 10";
 
 	public static final String SELECT_FILE = "select * from `board_file` where `parent`=?";
 	
