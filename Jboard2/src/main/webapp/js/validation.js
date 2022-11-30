@@ -222,7 +222,7 @@ $(function() {
 			$('.hpResult').text('');
 		} else {
 			isHpOk = false;
-			$('.hpResult').css('color', 'red').text('유효하지 않는 휴대폰입니다.');
+			$('.hpResult').css('color', 'red').text('유효한 휴대폰 형식이 아닙니다.');
 		}
 
 	});

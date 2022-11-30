@@ -21,6 +21,7 @@ public class Sql {
 	public static final String SELECT_COUNT_UID = "select count(`uid`) from `board_user` where `uid`=?";
 	public static final String SELECT_COUNT_NICK = "select count(`nick`) from `board_user` where `nick`=?";
 	public static final String SELECT_COUNT_EMAIL = "select count(`email`) from `board_user` where `email`=?";
+	public static final String SELECT_COUNT_HP = "select count(`hp`) from `board_user` where `hp`=?";
 	
 	
 	// board

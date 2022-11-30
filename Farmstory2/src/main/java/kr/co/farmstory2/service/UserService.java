@@ -61,6 +61,10 @@ public enum UserService {
 		return dao.selectCountEmail(email);
 	}
 	
+	public int selectCountHp(String hp) {
+		return dao.selectCountHp(hp);
+	}
+	
 	public void updateUserForSession() {}
 	
 	public void updateUserForSessionLimitDate() {}

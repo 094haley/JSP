@@ -130,6 +130,27 @@ public class UserDAO extends DBHelper {
 		return result;
 	}
 	
+	public int selectCountHp(String hp) {
+		int result = 0;
+		try {
+			logger.info("selectCountHp");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_HP);
+			psmt.setString(1, hp);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
 	public void updateUserForSession() {}
 	
 	public void updateUserForSessionLimitDate() {}

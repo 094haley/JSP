@@ -62,7 +62,10 @@
                         </tr>
                         <tr>
                             <td>휴대폰</td>
-                            <td><input type="text" name="hp" placeholder="휴대폰 입력"/></td>
+		                    <td>
+		                    	<input type="text" name="hp" placeholder="휴대폰 입력"/>
+		                    	<span class="hpResult"></span>
+		                    </td>
                         </tr>
                         <tr>
                             <td>주소</td>
