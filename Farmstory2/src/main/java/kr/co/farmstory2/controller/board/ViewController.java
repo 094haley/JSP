@@ -22,9 +22,19 @@ public class ViewController extends HttpServlet {
 		
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
+		String no = req.getParameter("no");
+		String pg = req.getParameter("pg");
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		
+		// 조회수 +1
+		
+		// 글 가져오기
+		
+		// 댓글 가져오기
+		
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
 		dispatcher.forward(req, resp);

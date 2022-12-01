@@ -14,9 +14,57 @@ public class ArticleDAO extends DBHelper {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public void insertArticle() {}
+	public int insertArticle(ArticleVO article) {
+		int parent = 0;
+		try {
+			logger.info("insertArticle");
+			conn = getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
+			stmt = conn.createStatement();
+			
+			psmt.setString(1, article.getCate());
+			psmt.setString(2, article.getTitle());
+			psmt.setString(3, article.getContent());
+			psmt.setInt(4, article.getFname() == null ? 0 : 1);
+			psmt.setString(5, article.getUid());
+			psmt.setString(6, article.getRegip());
+			
+			psmt.executeUpdate();
+			rs = stmt.executeQuery(Sql.SELECT_MAX_NO);
+			
+			// 작업확정
+			conn.commit();
+			
+			if(rs.next()) {
+				parent = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return parent;
+	}
 	
-	public void insertFile() {}
+	public void insertFile(int parent, String newName, String fname) {
+		try {
+			logger.info("insertFile");
+			conn = getConnection();
+			psmt.setInt(1, parent);
+			psmt.setString(2, newName);
+			psmt.setString(3, fname);
+			
+			psmt.executeUpdate();		
+			
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	public void insertComment() {}
 	
@@ -123,8 +171,9 @@ public class ArticleDAO extends DBHelper {
 				
 			}else {
 				psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL_FOR_SEARCH);
-				psmt.setString(1, "%"+search+"%");
+				psmt.setString(1, cate);
 				psmt.setString(2, "%"+search+"%");
+				psmt.setString(3, "%"+search+"%");
 				rs = psmt.executeQuery();
 				
 				if(rs.next()) {

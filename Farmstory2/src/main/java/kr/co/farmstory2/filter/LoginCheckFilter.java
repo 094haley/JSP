@@ -29,9 +29,9 @@ public class LoginCheckFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// 필터를 동작할 요청주소 리스트 구성
 		uriList = new ArrayList<>();
-		uriList.add("/Farmstory2/user/write.do");
-		uriList.add("/Farmstory2/user/modify.do");
-		uriList.add("/Farmstory2/user/view.do");
+		uriList.add("/Farmstory2/board/write.do");
+		uriList.add("/Farmstory2/board/modify.do");
+		uriList.add("/Farmstory2/board/view.do");
 	}
 	
 	@Override

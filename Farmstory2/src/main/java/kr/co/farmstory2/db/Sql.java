@@ -61,7 +61,7 @@ public class Sql {
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `board_article` WHERE `parent` = 0 AND `cate`=?";
 	public static final String SELECT_COUNT_TOTAL_FOR_SEARCH = "SELECT COUNT(`no`) FROM `board_article` As a "
 															+ "JOIN `board_user` AS b ON a.uid = b.uid "
-															+ " WHERE `parent` = 0 AND (`title` LIKE ? OR `nick` LIKE ?) ";
+															+ " WHERE `parent` = 0 and `cate`=? AND (`title` LIKE ? OR `nick` LIKE ?) ";
 	
 	public static final String SELECT_ARTICLES = "select a.*, b.nick from `board_article` as a "
 											    + "join `board_user` as b "
