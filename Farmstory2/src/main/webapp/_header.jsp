@@ -30,8 +30,15 @@
             }else if(success == '101'){
             	alert('로그인을 먼저 하십시오.');
             }else if(success == '200') {
-            	alert('로그아웃되었습니다.')
+            	alert('로그아웃되었습니다.');
             }
+            
+        	let result = "${result}";
+        	if(result == '201'){
+        		alert('수정되었습니다.');
+        	}else if(result=='202') {
+        		alert('삭제되었습니다.');
+        	}
             
         });  
     </script>

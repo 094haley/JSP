@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="sub">
-    <div><img src="../img/sub_top_tit5.png" alt="COMMUNITY"></div>
+    <div><img src="/Farmstory2/img/sub_top_tit5.png" alt="COMMUNITY"></div>
     <section class="cate5">
         <aside>
-            <img src="../img/sub_aside_cate5_tit.png" alt="커뮤니티"/>
+            <img src="/Farmstory2/img/sub_aside_cate5_tit.png" alt="커뮤니티"/>
 
             <ul class="lnb">
                 <li class="${cate eq 'notice'?'on':'off'}"><a href="./list.do?group=community&cate=notice">공지사항</a></li>

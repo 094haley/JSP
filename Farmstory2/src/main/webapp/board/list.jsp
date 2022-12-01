@@ -23,7 +23,7 @@
             <c:forEach var="article" items="${articles}">                
             <tr>
                 <td>${pageStartNum = pageStartNum-1}</td>
-                <td><a href="./view.do?group=${group}&cate=${cate}$no=${article.no}&pg=${currentPage}">${article.title}[${article.comment}]</a></td>
+                <td><a href="./view.do?group=${group}&cate=${cate}&no=${article.no}&pg=${currentPage}">${article.title}[${article.comment}]</a></td>
                 <td>${article.nick}</td>
                 <td>${(article.rdate).substring(2, 10)}</td>
                 <td>${article.hit}</td>

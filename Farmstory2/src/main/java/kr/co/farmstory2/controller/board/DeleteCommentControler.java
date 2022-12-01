@@ -1,9 +1,7 @@
-package kr.co.farmstory2.controller;
+package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.farmstory2.service.ArticleService;
-import kr.co.farmstory2.vo.ArticleVO;
 
-@WebServlet("/index.do")
-public class IndexController extends HttpServlet {
-	
+@WebServlet("/board/deletecomment.do")
+public class DeleteCommentControler extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	private ArticleService service = ArticleService.INSTANCE;
 	
@@ -25,16 +22,19 @@ public class IndexController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		// 최신글 가져오기
-		//List<ArticleVO> latests = service.selectLatests()
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		String no = req.getParameter("no");
+		String parent = req.getParameter("parent");
+		
+		int result = service.deleteComment(no, parent);
+		
+		// result값 전송
+		service.sendResult(result, resp);
+	
 	}
 
 }

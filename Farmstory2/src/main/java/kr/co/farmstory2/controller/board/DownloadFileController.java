@@ -1,9 +1,7 @@
-package kr.co.farmstory2.controller;
+package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.farmstory2.service.ArticleService;
-import kr.co.farmstory2.vo.ArticleVO;
+import kr.co.farmstory2.vo.FileVO;
 
-@WebServlet("/index.do")
-public class IndexController extends HttpServlet {
-	
+@WebServlet("/board/downloadfile.do")
+public class DownloadFileController extends HttpServlet{
+
 	private static final long serialVersionUID = 1L;
 	private ArticleService service = ArticleService.INSTANCE;
 	
@@ -24,17 +22,20 @@ public class IndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		// 최신글 가져오기
-		//List<ArticleVO> latests = service.selectLatests()
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(req, resp);
+		String parent = req.getParameter("parent");
+		
+		// 파일 정보 가져오기 & 파일 다운로드 카운트 + 1
+		FileVO vo = service.selectFile(parent);
+		service.updateFileDownload(vo.getFno());
+		
+		// 파일 다운로드
+		service.downloadFile(req, resp, vo);
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	
 	}
-
 }

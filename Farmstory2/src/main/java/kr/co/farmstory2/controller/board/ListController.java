@@ -31,10 +31,11 @@ public class ListController extends HttpServlet {
 		String cate = req.getParameter("cate");
 		String pg = req.getParameter("pg");
 		String search = req.getParameter("search");
-		//String result = req.getParameter("result");
+		String result = req.getParameter("result");
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		req.setAttribute("result", result);
 
 		
 		// 현재 페이지 번호
