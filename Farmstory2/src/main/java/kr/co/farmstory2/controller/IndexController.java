@@ -24,9 +24,23 @@ public class IndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		
 		// 최신글 가져오기
-		//List<ArticleVO> latests = service.selectLatests()
+		List<ArticleVO> latests = service.selectLatests("grow", "school", "story");
+		
+		// 오류방지를 위한 임시코드
+		if(latests.size() < 15) {
+			ArticleVO article = new ArticleVO();
+			article.setNo(0);
+			article.setTitle("무제");
+			article.setRdate("00-00-00");
+			
+			for(int i=0; i<15; i++) {
+				latests.add(article);
+			}
+		}
+		
+		req.setAttribute("latests", latests);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);

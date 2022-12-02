@@ -65,6 +65,10 @@ public enum ArticleService {
 		return dao.selectFile(parent);
 	}
 	
+	public List<ArticleVO> selectLatests(String cate1, String cate2, String cate3) {
+		return dao.selectLatests(cate1, cate2, cate3);
+	}
+	
 	public List<ArticleVO> selectLatests(String cate) {
 		return dao.selectLatests(cate);
 	}
