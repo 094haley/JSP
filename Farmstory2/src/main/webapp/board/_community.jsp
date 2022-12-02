@@ -7,23 +7,23 @@
             <img src="/Farmstory2/img/sub_aside_cate5_tit.png" alt="커뮤니티"/>
 
             <ul class="lnb">
-                <li class="${cate eq 'notice'?'on':'off'}"><a href="./list.do?group=community&cate=notice">공지사항</a></li>
-                <li class="${cate eq 'menu'?'on':'off'}"><a href="./list.do?group=community&cate=menu">오늘의식단</a></li>
-                <li class="${cate eq 'chef'?'on':'off'}"><a href="./list.do?group=community&cate=chef">나도요리사</a></li>
-                <li class="${cate eq 'qna'?'on':'off'}"><a href="./list.do?group=community&cate=qna">1:1고객문의</a></li>
-                <li class="${cate eq 'faq'?'on':'off'}"><a href="./list.do?group=community&cate=faq">자주묻는질문</a></li>
+                <li class="${cate eq '1'?'on':'off'}"><a href="./list.do?group=community&cate=1">공지사항</a></li>
+                <li class="${cate eq '2'?'on':'off'}"><a href="./list.do?group=community&cate=2">오늘의식단</a></li>
+                <li class="${cate eq '3'?'on':'off'}"><a href="./list.do?group=community&cate=3">나도요리사</a></li>
+                <li class="${cate eq '4'?'on':'off'}"><a href="./list.do?group=community&cate=4">1:1고객문의</a></li>
+                <li class="${cate eq '5'?'on':'off'}"><a href="./list.do?group=community&cate=5">자주묻는질문</a></li>
             </ul>
 
         </aside>
         <article>
             <nav>
-                <img src="../img/sub_nav_tit_cate5_${cate}.png" alt="공지사항"/>
+                <img src="../img/sub_nav_tit_cate5_tit${cate}.png" alt="공지사항"/>
                 <p>
                     HOME > 커뮤니티 > 
-                    <c:if test="${cate eq 'notice'}"><em>공지사항</em></c:if>
-                    <c:if test="${cate eq 'menu'}"><em>오늘의식단</em></c:if>
-                    <c:if test="${cate eq 'chef'}"><em>나도요리사</em></c:if>
-                    <c:if test="${cate eq 'qna'}"><em>1:1고객문의</em></c:if>
-                    <c:if test="${cate eq 'faq'}"><em>자주묻는질문</em></c:if>
+                    <c:if test="${cate eq '1'}"><em>공지사항</em></c:if>
+                    <c:if test="${cate eq '2'}"><em>오늘의식단</em></c:if>
+                    <c:if test="${cate eq '3'}"><em>나도요리사</em></c:if>
+                    <c:if test="${cate eq '4'}"><em>1:1고객문의</em></c:if>
+                    <c:if test="${cate eq '5'}"><em>자주묻는질문</em></c:if>
                 </p>
             </nav>

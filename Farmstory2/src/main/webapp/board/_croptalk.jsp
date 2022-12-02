@@ -7,19 +7,19 @@
             <img src="/Farmstory2/img/sub_aside_cate3_tit.png" alt="농작물이야기"/>
 
             <ul class="lnb">
-                <li class="${cate eq 'story'?'on':'off'}"><a href="./list.do?group=croptalk&cate=story">농작물이야기</a></li>
-                <li class="${cate eq 'grow'?'on':'off'}"><a href="./list.do?group=croptalk&cate=grow">텃밭가꾸기</a></li>
-                <li class="${cate eq 'school'?'on':'off'}"><a href="./list.do?group=croptalk&cate=school">귀농학교</a></li>
+                <li class="${cate eq '1'?'on':'off'}"><a href="./list.do?group=croptalk&cate=1">농작물이야기</a></li>
+                <li class="${cate eq '2'?'on':'off'}"><a href="./list.do?group=croptalk&cate=2">텃밭가꾸기</a></li>
+                <li class="${cate eq '3'?'on':'off'}"><a href="./list.do?group=croptalk&cate=3">귀농학교</a></li>
             </ul>
 
         </aside>
         <article>
             <nav>
-                <img src="/Farmstory2/img/sub_nav_tit_cate3_${cate}.png" alt="농작물이야기"/>
+                <img src="/Farmstory2/img/sub_nav_tit_cate3_tit${cate}.png" alt="농작물이야기"/>
                 <p>
                     HOME > 농작물이야기 > 
-                    <c:if test="${cate eq 'story'}"><em>농작물이야기</em></c:if>
-                    <c:if test="${cate eq 'grow'}"><em>텃밭가꾸기</em></c:if>
-                    <c:if test="${cate eq 'school'}"><em>귀농학교</em></c:if>
+                    <c:if test="${cate eq '1'}"><em>농작물이야기</em></c:if>
+                    <c:if test="${cate eq '2'}"><em>텃밭가꾸기</em></c:if>
+                    <c:if test="${cate eq '3'}"><em>귀농학교</em></c:if>
                 </p>
             </nav>

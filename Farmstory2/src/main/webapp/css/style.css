@@ -201,9 +201,14 @@ main > .latest > div > img {
 main > .latest table {
     position: absolute;
     right: 10px;
-    bottom: 16px;
+    top: 72px;
     color: #6a6a6a;
 }
+
+main > .latest table tr {
+	
+}
+
 main > .latest table tr > td > a{
     display: block;
     width: 140px;

@@ -26,42 +26,74 @@
 	
     <div class="latest">
         <div>
-            <a href="/Farmstory2/board/list.do?group=croptalk&cate=grow"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
+            <a href="/Farmstory2/board/list.do?group=croptalk&cate=2"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="./img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
-            	<c:forEach var="article" items="${latests}" begin="0" end="4">
-                <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=grow&no=${article.no}&pg=1">${article.title}</a></td>
-                    <td>${article.rdate}</td>
-                </tr>
-            	</c:forEach>
+            	<c:choose>
+            		<c:when test="${empty map.croptalk2}">
+		            	<tr>
+		                    <td>></td>
+		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                </tr>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach items="${map.croptalk2}" var="article" end="4">
+			            	<tr>
+			                    <td>></td>
+			                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=${article.cate}&no=${article.no}&pg=1">${article.title}</a></td>
+			                    <td>${article.rdate}</td>
+			                </tr>
+            			</c:forEach>
+            		</c:otherwise>
+            	</c:choose>
             </table>
         </div>
+        
         <div>
-            <a href="/Farmstory2/board/list.do?group=croptalk&cate=school"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
-            <img src="./img/main_latest2_img.jpg" alt="이미지"/>
+            <a href="/Farmstory2/board/list.do?group=croptalk&cate=2"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
+            <img src="./img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
-            	<c:forEach var="article" items="${latests}" begin="5" end="9">
-                <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=school&no=${article.no}&pg=1">${article.title}</a></td>
-                    <td>${article.rdate}</td>
-                </tr>
-            	</c:forEach>
+            	<c:choose>
+            		<c:when test="${empty map.croptalk3}">
+		            	<tr>
+		                    <td>></td>
+		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                </tr>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach items="${map.croptalk3}" var="article" end="4">
+			            	<tr>
+			                    <td>></td>
+			                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=${article.cate}&no=${article.no}&pg=1">${article.title}</a></td>
+			                    <td>${article.rdate}</td>
+			                </tr>
+            			</c:forEach>
+            		</c:otherwise>
+            	</c:choose>
             </table>
         </div>
+        
         <div>
-            <a href="/Farmstory2/board/list.do?group=croptalk&cate=story"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
-            <img src="./img/main_latest3_img.jpg" alt="이미지"/>
+            <a href="/Farmstory2/board/list.do?group=croptalk&cate=2"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
+            <img src="./img/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
-            	<c:forEach var="article" items="${latests}" begin="10" end="14">
-                <tr>
-                    <td>></td>
-                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=story&no=${article.no}&pg=1">${article.title}</a></td>
-                    <td>${article.rdate}</td>
-                </tr>
-            	</c:forEach>
+            	<c:choose>
+            		<c:when test="${empty map.croptalk1}">
+		            	<tr>
+		                    <td>></td>
+		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                </tr>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach items="${map.croptalk1}" var="article" end="4">
+			            	<tr>
+			                    <td>></td>
+			                    <td><a href="/Farmstory2/board/view.do?group=croptalk&cate=${article.cate}&no=${article.no}&pg=1">${article.title}</a></td>
+			                    <td>${article.rdate}</td>
+			                </tr>
+            			</c:forEach>
+            		</c:otherwise>
+            	</c:choose>
             </table>
         </div>
         
