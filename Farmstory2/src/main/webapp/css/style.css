@@ -205,9 +205,6 @@ main > .latest table {
     color: #6a6a6a;
 }
 
-main > .latest table tr {
-	
-}
 
 main > .latest table tr > td > a{
     display: block;

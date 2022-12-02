@@ -20,8 +20,8 @@
     </div>
 
     <div class="quick">
-        <a href="/Farmstory2/board/list.do?group=community&cate=menu"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
-        <a href="/Farmstory2/board/list.do?group=community&cate=chef"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
+        <a href="/Farmstory2/board/list.do?group=community&cate=2"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
+        <a href="/Farmstory2/board/list.do?group=community&cate=3"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
     </div>
 	
     <div class="latest">
@@ -33,7 +33,7 @@
             		<c:when test="${empty map.croptalk2}">
 		            	<tr>
 		                    <td>></td>
-		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                    <td colspan="2" width="190px"><a>최신 글이 없습니다.</a></td>
 		                </tr>
             		</c:when>
             		<c:otherwise>
@@ -57,7 +57,7 @@
             		<c:when test="${empty map.croptalk3}">
 		            	<tr>
 		                    <td>></td>
-		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                    <td colspan="2" width="190px"><a>최신 글이 없습니다.</a></td>
 		                </tr>
             		</c:when>
             		<c:otherwise>
@@ -81,7 +81,7 @@
             		<c:when test="${empty map.croptalk1}">
 		            	<tr>
 		                    <td>></td>
-		                    <td colspan="2" width="195px"><a>최신 글이 없습니다.</a></td>
+		                    <td colspan="2" width="190px"><a>최신 글이 없습니다.</a></td>
 		                </tr>
             		</c:when>
             		<c:otherwise>
@@ -112,8 +112,8 @@
                 </p>
             </div>
             <div class="btns">
-                <a href="/Farmstory2/board/list.do?group=community&cate=qna"><img src="./img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
-                <a href="/Farmstory2/board/list.do?group=community&cate=faq"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"></a>
+                <a href="/Farmstory2/board/list.do?group=community&cate=4"><img src="./img/main_sub2_cs_bt1.png" alt="1:1 고객문의"></a>
+                <a href="/Farmstory2/board/list.do?group=community&cate=5"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"></a>
                 <a href="#"><img src="./img/main_sub2_cs_bt3.png" alt="배송조회"></a>
             </div>
         </div>
