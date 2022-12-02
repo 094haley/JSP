@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
 <script src="/Farmstory2/js/latests.js"></script>
+<script>
+	$(function(){
+		console.log("${latests}");
+	});
+</script>
 <main>
     <div class="slider">
         <ul>
@@ -23,7 +28,7 @@
         <a href="/Farmstory2/board/list.do?group=community&cate=menu"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
         <a href="/Farmstory2/board/list.do?group=community&cate=chef"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
     </div>
-
+	
     <div class="latest">
         <div>
             <a href="/Farmstory2/board/list.do?group=croptalk&cate=grow"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>

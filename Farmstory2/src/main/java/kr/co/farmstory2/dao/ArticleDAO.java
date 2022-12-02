@@ -1,6 +1,7 @@
 package kr.co.farmstory2.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,12 +152,13 @@ public class ArticleDAO extends DBHelper {
 		return article;
 	}
 	
+	
 	public List<ArticleVO> selectArticles(String cate, int start) {
 		
 		List<ArticleVO> articles = new ArrayList<>();
 		
 		try {
-			logger.info("selectArticle");
+			logger.info("selectArticles");
 			
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
@@ -315,7 +317,7 @@ public class ArticleDAO extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return latests;
-	}
+	}	
 	
 	public List<ArticleVO> selectComments(String parent) {
 		List<ArticleVO> comments = new ArrayList<>();

@@ -53,6 +53,7 @@ public enum ArticleService {
 		return dao.selectArticle(no);
 	}
 	
+	
 	public List<ArticleVO> selectArticles(String cate, int start) {
 		return dao.selectArticles(cate, start);
 	}

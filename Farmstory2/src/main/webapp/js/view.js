@@ -49,7 +49,7 @@
 							article += "<span class='date'>"+data.date+"</span>";
 							article += "<p class='content'>"+data.content+"</p>";
 							article += "<div>";
-							article += "<a href='#' class='remove' data-no='"+data.no+"' data-parent=''"+data.parent+">삭제</a>";							
+							article += "<a href='#' class='remove' data-no='"+data.no+"' data-parent=''"+data.parent+">삭제 </a>";							
 							article += "<a href='#' class='modify' data-no='"+data.no+"'>수정</a>";							
 							article += "</div>";
 							article += "</article>";
@@ -63,9 +63,8 @@
 			return false;
 		});
 		
-		
 		// 댓글 수정
-		$('.modify').click(function(e){
+		$(document).on('click', '.modify', function(e){
 			e.preventDefault();
 			
 			let txt = $(this).text();
@@ -98,10 +97,12 @@
 					}
 				});
 			}
+			
 		});
 		
+		
 		// 댓글 삭제
-		$('.remove').click(function(e){
+		$(document).on('click', '.remove', function(e){
 			e.preventDefault();
 			
 			let isDeleteOk = confirm('정말 삭제하시겠습니까?');
@@ -129,5 +130,6 @@
 				});
 			}
 		});
+
 			
 	});
