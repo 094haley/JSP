@@ -2,11 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
 <script src="/Farmstory2/js/latests.js"></script>
-<script>
-	$(function(){
-		console.log("${latests}");
-	});
-</script>
 <main>
     <div class="slider">
         <ul>
