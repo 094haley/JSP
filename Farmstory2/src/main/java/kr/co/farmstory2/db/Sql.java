@@ -102,6 +102,10 @@ public class Sql {
 	
 	public static final String SELECT_LATEST = "SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate` =? ORDER BY `no` DESC LIMIT 3";
 	
+	// 최신글 가져오기 추가쿼리
+	public static final String SELECT_LATEST_ARTICLES = "SELECT * FROM(SELECT *, ROW_NUMBER() OVER(PARTITION BY `cate` ORDER BY `no` DESC) a FROM `board_article`) rankrow "
+													+ "WHERE rankrow.a <= 5 AND `cate` IN ('croptalk1', 'croptalk2', 'croptalk3')";
+	
 	public static final String UPDATE_ARTICLE = "update `board_article` set `title`=?, `content`=?, `rdate`=NOW() where `no`=?";
 	
 	public static final String UPDATE_ARTICLE_HIT = "UPDATE `board_article` SET `hit` = `hit` + 1 WHERE `no`=?";

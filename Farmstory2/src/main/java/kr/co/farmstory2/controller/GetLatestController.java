@@ -34,7 +34,7 @@ public class GetLatestController extends HttpServlet {
 		
 		String cate = req.getParameter("cate");
 		
-		List<ArticleVO> latests = service.selectLatests(cate);
+		List<ArticleVO> latests = service.selectLatests("community"+cate);
 		
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(latests);	

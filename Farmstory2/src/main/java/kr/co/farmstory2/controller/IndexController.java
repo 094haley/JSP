@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +27,7 @@ public class IndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		/*
 		// 최신글 가져오기
 		List<ArticleVO> latests = service.selectLatests("grow", "school", "story");
 		
@@ -43,6 +44,10 @@ public class IndexController extends HttpServlet {
 		}
 		
 		req.setAttribute("latests", latests);
+		*/
+		
+		Map<String, Object> map = service.selectLatestArticles();
+		req.setAttribute("map", map);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);

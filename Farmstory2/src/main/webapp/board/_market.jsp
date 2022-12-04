@@ -6,7 +6,7 @@
             <img src="/Farmstory2/img/sub_aside_cate2_tit.png" alt="장보기"/>
 
             <ul class="lnb">
-                <li class="on"><a href="./list.do?group=market&cate=market">장보기</a></li>
+                <li class="on"><a href="./list.do?group=market&cate=1">장보기</a></li>
             </ul>
         </aside>
         <article>

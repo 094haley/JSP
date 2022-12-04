@@ -57,7 +57,7 @@ public class WriteController extends HttpServlet {
 		
 		ArticleVO article = new ArticleVO();
 		article.setUid(uid);
-		article.setCate(cate);
+		article.setCate(group+cate);
 		article.setTitle(title);
 		article.setContent(content);
 		article.setFname(fname);

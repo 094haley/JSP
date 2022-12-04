@@ -3,7 +3,9 @@ package kr.co.farmstory2.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -318,6 +320,72 @@ public class ArticleDAO extends DBHelper {
 		}
 		return latests;
 	}	
+	
+	public Map<String, Object> selectLatestArticles(){
+		
+		Map<String , Object> map = null;
+		List<ArticleVO> croptalk1 = null;
+		List<ArticleVO> croptalk2 = null;
+		List<ArticleVO> croptalk3 = null;
+		
+		try {
+			logger.info("selectLatestArticles");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			map = new HashMap<>();
+			rs = stmt.executeQuery(Sql.SELECT_LATEST_ARTICLES);
+			
+			croptalk1 = new ArrayList<>();
+			croptalk2 = new ArrayList<>();
+			croptalk3 = new ArrayList<>();
+			
+			while(rs.next()) {
+				ArticleVO vo = new ArticleVO();
+				
+				String cate = rs.getString("cate");
+				vo.setNo(rs.getInt("no"));
+				vo.setGroup(removeNumber(cate));
+				vo.setCate(removeString(cate));
+				vo.setTitle(rs.getString("title"));
+				vo.setRdate(rs.getString("rdate").substring(2, 10));
+				
+				switch(cate) {
+					
+				case "croptalk1":
+					croptalk1.add(vo); break;
+					
+				case "croptalk2":
+					croptalk2.add(vo); break;
+					
+				case "croptalk3":
+					croptalk3.add(vo); break;
+				
+				}
+			}
+			
+			map.put("croptalk1", croptalk1);
+			map.put("croptalk2", croptalk2);
+			map.put("croptalk3", croptalk3);
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+	
+	// 그룹과 카테고리를 가져오는 함수
+	public String removeNumber(String str) {
+		String match = "[0-9]";
+		str = str.replaceAll(match, "");
+		return str;
+	}
+	
+	public String removeString(String str) {
+		String match = "[^0-9]";
+		str = str.replaceAll(match, "");
+		return str;
+	}
+	
 	
 	public List<ArticleVO> selectComments(String parent) {
 		List<ArticleVO> comments = new ArrayList<>();

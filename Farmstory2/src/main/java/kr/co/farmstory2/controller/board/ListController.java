@@ -42,7 +42,7 @@ public class ListController extends HttpServlet {
 		int currentPage = service.getCurrentPage(pg);
 		
 		// 전체 게시물 갯수 
-		int total = service.selectCountTotal(search, cate);
+		int total = service.selectCountTotal(search, group+cate);
 		
 		// 페이지 마지막 번호 
 		int lastPageNum = service.getLastPageNum(total);
@@ -60,13 +60,12 @@ public class ListController extends HttpServlet {
 		List<ArticleVO> articles = null;
 		
 		if(search == null) {
-			articles = service.selectArticles(cate, start);
+			articles = service.selectArticles(group+cate, start);
 		}else {
-			articles = service.selectArticlesByKeyWord(search, cate, start);
+			articles = service.selectArticlesByKeyWord(search, group+cate, start);
 		}
 		
 		req.setAttribute("articles", articles);
-		//req.setAttribute("result", result);
 		
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("lastPageNum", lastPageNum);

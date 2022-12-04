@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -72,6 +73,10 @@ public enum ArticleService {
 	
 	public List<ArticleVO> selectLatests(String cate) {
 		return dao.selectLatests(cate);
+	}
+	
+	public Map<String, Object> selectLatestArticles(){
+		return dao.selectLatestArticles();
 	}
 	
 	public List<ArticleVO> selectComments(String no) {
