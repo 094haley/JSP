@@ -96,6 +96,30 @@ public class UserDAO extends DBHelper {
 		}
 		return vo;
 	}
+	
+	public int selectUserForPassAuth(String uid, String pass) {
+		
+		int result = 0;
+		try {
+			logger.info("selectUserForPassAuth");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_USER);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
 	public void selectUsers() {}
 	
 	public UserVO selectUserForFindId(String name, String email) {
@@ -231,7 +255,27 @@ public class UserDAO extends DBHelper {
 		return result;
 	}
 
-	public void updateUser() {}
+	public void updateUser(UserVO user) {
+		try {
+			logger.info("updateUser");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_USER);
+			psmt.setString(1, user.getNick());
+			psmt.setString(2, user.getEmail());
+			psmt.setString(3, user.getHp());
+			psmt.setString(4, user.getZip());
+			psmt.setString(5, user.getAddr1());
+			psmt.setString(6, user.getAddr2());
+			psmt.setString(7, user.getUid());
+			
+			psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	public int updateUserPassword(String uid, String pass) {
 		int result = 0;
@@ -297,6 +341,24 @@ public class UserDAO extends DBHelper {
 		}
 	}
 	
-	public void deleteUser() {}
+	public int deleteUser(String uid) {
+		int result = 0;
+		try {
+			logger.info("deleteUser");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.DELETE_USER);
+			psmt.setString(1, uid);
+			
+			result = psmt.executeUpdate();
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+	}
+	
 	
 }

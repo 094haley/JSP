@@ -219,6 +219,15 @@ footer > p {
     vertical-align: bottom;
 }
 
+#user > .register #modifypass {
+	color: #fff;
+    font-size: 11px;
+    width: 81px;
+    height: 21px;
+    background: url(..//img/chk_passauth.jpg);
+    background-repeat: no-repeat;
+}
+
 #user > .register > form > div {
     float: right;
     margin-top: 10px;
